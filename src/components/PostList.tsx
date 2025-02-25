@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPosts } from "../redux/postSlice"; // Verifica la ruta
-import { RootState, AppDispatch } from "../redux/store"; // Verifica la ruta
+import { fetchPosts, deletePost } from "../redux/postSlice";
+import { RootState, AppDispatch } from "../redux/store";
 
 const PostList: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -18,7 +18,10 @@ const PostList: React.FC = () => {
       {error && <p>{error}</p>}
       <ul>
         {posts.map((post) => (
-          <li key={post.id}>{post.title}</li>
+          <li key={post.id}>
+            {post.title}
+            <button onClick={() => dispatch(deletePost(post.id!))}>🗑 Eliminar</button>
+          </li>
         ))}
       </ul>
     </div>
