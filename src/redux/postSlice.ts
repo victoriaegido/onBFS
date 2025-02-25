@@ -1,17 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// URL de la API
+// API URL
 const API_URL = "https://jsonplaceholder.typicode.com/posts";
 
-// Tipo para Post
+// Post Type
 interface Post {
   id?: number;
   title: string;
   body: string;
 }
 
-// Estado inicial de los posts
+// Posts initial state
 interface PostState {
   posts: Post[];
   loading: boolean;
@@ -24,31 +24,31 @@ const initialState: PostState = {
   error: null,
 };
 
-// Acción asíncrona para obtener posts
+// Get posts
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   const response = await axios.get(API_URL);
   return response.data;
 });
 
-// Acción para crear un post
+// Create post
 export const createPost = createAsyncThunk("posts/createPost", async (post: Post) => {
   const response = await axios.post(API_URL, post);
   return response.data;
 });
 
-// Acción para actualizar un post
+// Update post
 export const updatePost = createAsyncThunk("posts/updatePost", async ({ id, post }: { id: number; post: Post }) => {
   const response = await axios.put(`${API_URL}/${id}`, post);
   return response.data;
 });
 
-// Acción para eliminar un post
+// Delete post
 export const deletePost = createAsyncThunk("posts/deletePost", async (id: number) => {
   await axios.delete(`${API_URL}/${id}`);
   return id;
 });
 
-// Crear el slice de Redux
+
 const postSlice = createSlice({
   name: "posts",
   initialState,

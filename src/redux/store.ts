@@ -3,7 +3,7 @@ import postReducer from './postSlice'
 
 export const store = configureStore({
   reducer: {
-    posts: postReducer, // Reducer para manejar el estado de los posts
+    posts: postReducer, 
   },
 });
 
