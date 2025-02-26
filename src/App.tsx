@@ -7,14 +7,12 @@ import PostsPage from "./app/pages/post.page";
 
 const App: React.FC = () => {
     return (
-      <BrowserRouter>
-        <div>
-              <Header>
-              </Header>
-              <PostsPage />
-          </div>
-      </BrowserRouter>
-        
+        <BrowserRouter>
+            <div>
+                <Header></Header>
+                <PostsPage />
+            </div>
+        </BrowserRouter>
     );
 };
 

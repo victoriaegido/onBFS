@@ -33,8 +33,22 @@ const PostList: React.FC<PostListProps> = ({ onEdit }) => {
                     <li key={post.id}>
                         <h3>{post.title}</h3>
                         <p>{post.body}</p>
-                        <button onClick={() => onEdit({ id: post.id ?? 0, title: post.title, body: post.body })}>Editar</button>
-                        <button onClick={() => dispatch(deletePost(post.id ?? 0))}>Eliminar</button>
+                        <button
+                            onClick={() =>
+                                onEdit({
+                                    id: post.id ?? 0,
+                                    title: post.title,
+                                    body: post.body,
+                                })
+                            }
+                        >
+                            Editar
+                        </button>
+                        <button
+                            onClick={() => dispatch(deletePost(post.id ?? 0))}
+                        >
+                            Eliminar
+                        </button>
                     </li>
                 ))}
             </ul>

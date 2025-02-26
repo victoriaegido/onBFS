@@ -12,7 +12,10 @@ export const createPost = async (post: { title: string; body: string }) => {
     return response.data;
 };
 
-export const updatePost = async (id: number, post: { title: string; body: string }) => {
+export const updatePost = async (
+    id: number,
+    post: { title: string; body: string }
+) => {
     const response = await axios.put(`${API_URL}/${id}`, post);
     return response.data;
 };

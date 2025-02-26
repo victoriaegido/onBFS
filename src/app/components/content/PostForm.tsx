@@ -3,9 +3,18 @@ import { useDispatch } from "react-redux";
 import { createPost, updatePost } from "../../../store/slices/postSlice";
 import { AppDispatch } from "../../../store/store";
 
-const PostForm: React.FC<{
-    postToEdit?: { id: number; title: string; body: string };
-}> = ({ postToEdit }) => {
+interface Post {
+    id: number;
+    title: string;
+    body: string;
+}
+
+interface PostFormProps {
+    postToEdit?: Post;
+    onClose: () => void;
+}
+
+const PostForm: React.FC<PostFormProps> = ({ postToEdit, onClose }) => {
     const [title, setTitle] = useState(postToEdit ? postToEdit.title : "");
     const [body, setBody] = useState(postToEdit ? postToEdit.body : "");
     const dispatch = useDispatch<AppDispatch>();
@@ -22,25 +31,31 @@ const PostForm: React.FC<{
 
         setTitle("");
         setBody("");
+        onClose(); // Call onClose after form submission
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="text"
-                placeholder="Título"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-            />
-            <textarea
-                placeholder="Contenido"
-                value={body}
-                onChange={(e) => setBody(e.target.value)}
-            />
-            <button type="submit">
-                {postToEdit ? "Actualizar" : "Crear"} Post
-            </button>
-        </form>
+        <div>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="Título"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                />
+                <textarea
+                    placeholder="Contenido"
+                    value={body}
+                    onChange={(e) => setBody(e.target.value)}
+                />
+                <button type="submit">
+                    {postToEdit ? "Actualizar" : "Crear"} Post
+                </button>
+                <button type="button" onClick={onClose}>
+                    Cancelar
+                </button>
+            </form>
+        </div>
     );
 };
 
