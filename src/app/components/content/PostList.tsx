@@ -23,7 +23,7 @@ const PostList: React.FC = () => {
                     <li key={post.id}>
                         {post.title}
                         <button onClick={() => dispatch(deletePost(post.id!))}>
-                            🗑 Eliminar
+                             Eliminar
                         </button>
                     </li>
                 ))}

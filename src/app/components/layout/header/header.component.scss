@@ -1,0 +1,59 @@
+.header {
+    width: 97vw; // Se asegura que el header cubra todo el ancho de la pantalla
+    height: 60px; // Altura del header (puedes ajustarla)
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #515763;
+    padding: 15px 20px;
+    color: white;
+    position: fixed; // Hace que el header se mantenga fijo en la parte superior
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  
+    &__logo {
+      display: flex;
+      align-items: center;
+      
+      &__img {
+        height: 50px;
+        margin-right: 15px;
+      }
+    }
+  
+    &__nav {
+      display: flex;
+      gap: 20px;
+      font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  
+      &__link {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        transition: color 0.3s;
+  
+        &:hover {
+          color: #61dafb;
+        }
+      }
+    }
+  
+    &__user {
+      display: flex;
+      align-items: center;
+  
+      &__icon {
+        height: 35px;
+        margin-right: 10px;
+      }
+    }
+  }
+  
+  // Ajustar el contenido principal para que no quede debajo del header
+  .main-content {
+    margin-top: 80px; // Para dejar espacio debajo del header fijo
+    padding: 20px;
+  }
+  

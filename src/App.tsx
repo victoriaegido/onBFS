@@ -1,15 +1,21 @@
 import React from "react";
-import PostList from "./app/components/layout/PostList";
+import PostList from "./app/components/content/PostList";
 import "./App.css";
+import Header from "./app/components/layout/header/header.component";
+import { BrowserRouter } from "react-router-dom";
+import PostForm from "./app/components/content/PostForm";
 
 const App: React.FC = () => {
     return (
+      <BrowserRouter>
         <div>
-            <header>
-                <h1>¡Bienvenido a la App de Posts!</h1>
-            </header>
-            <PostList />
-        </div>
+              <Header>
+              </Header>
+              <PostList />
+              <PostForm />
+          </div>
+      </BrowserRouter>
+        
     );
 };
 
