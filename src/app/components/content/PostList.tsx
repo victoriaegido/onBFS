@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPosts, deletePost } from "../../../redux/postSlice";
-import { RootState, AppDispatch } from "../../../redux/store";
+import { fetchPosts, deletePost } from "../../../store/slices/postSlice";
+import { RootState, AppDispatch } from "../../../store/store";
 
 const PostList: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createPost, updatePost } from "../../../redux/postSlice";
-import { AppDispatch } from "../../../redux/store";
+import { createPost, updatePost } from "../../../store/slices/postSlice";
+import { AppDispatch } from "../../../store/store";
 
 const PostForm: React.FC<{
     postToEdit?: { id: number; title: string; body: string };
