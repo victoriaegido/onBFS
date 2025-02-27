@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+//import { Link } from "react-router-dom";
 import PostList from "../components/content/PostList";
 import PostForm from "../components/content/PostForm";
+import Breadcrumbs from "../components/shared/breadcrumbs/breadcrumb.component";
 
 interface Post {
     id: number;
@@ -16,6 +18,7 @@ const PostsPage: React.FC = () => {
 
     return (
         <div>
+            <Breadcrumbs /> {/* Aquí se agregan los Breadcrumbs */}
             <h1>Gestión de Posts</h1>
             {viewMode === "view" && (
                 <>
@@ -32,7 +35,7 @@ const PostsPage: React.FC = () => {
             )}
             {viewMode === "create" && (
                 <PostForm
-                    postToEdit={undefined as unknown as Post}
+                    postToEdit={undefined}
                     onClose={() => setViewMode("view")}
                 />
             )}

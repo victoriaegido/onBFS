@@ -1,0 +1,11 @@
+//@import "generic/base";
+@import "generic/scrollbar";
+
+@import "@goaigua/goaigua-styles/styles/variables/tokens.scss";
+@import "@goaigua/goaigua-styles/styles/helpers/bootstrap.scss";
+
+// LOCAL TOKENS
+@import "./local-tokens.scss";
+
+//NEW DESIGN SYSTEM
+@import "./tooltip-tokens.scss";
