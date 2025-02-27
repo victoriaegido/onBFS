@@ -9,15 +9,23 @@ const Header: React.FC<PropsWithChildren> = ({ children }) => {
             <div className="header__hierarchy">
                 <button className="header__hierarchy__button">☰</button>
                 <nav className="header__hierarchy__breadcrumbs">
-                    <Link to="/posts" className="breadcrumb-link">Posts</Link>
+                    <Link to="/posts" className="breadcrumb-link">
+                        Posts
+                    </Link>
                     <span className="breadcrumb-separator"> | </span>
-                    <Link to="/editar" className="breadcrumb-link">Editar Post</Link>
+                    <Link to="/crear" className="breadcrumb-link">
+                        Crear Post
+                    </Link>
                 </nav>
             </div>
 
             {/* Logo centrado */}
             <div className="header__logo">
-                <img src="/logo.png" alt="Logo" className="header__logo__image" />
+                <img
+                    src="/logo.png"
+                    alt="Logo"
+                    className="header__logo__image"
+                />
             </div>
 
             {/* Menú de iconos */}

@@ -1,61 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { createPost, updatePost } from "../../../store/slices/postSlice";
-import { AppDispatch } from "../../../store/store";
-
-interface Post {
-    id: number;
-    title: string;
-    body: string;
-}
+import { updatePost } from "../../services/postService"; // Eliminamos `createPost`
+import { fetchPosts } from "../../../store/slices/postSlice";
+import { AppDispatch } from "../../../store/store"; 
 
 interface PostFormProps {
-    postToEdit?: Post;
+    postToEdit: { id: number; title: string; body: string }; // Ahora `postToEdit` es obligatorio
     onClose: () => void;
+    onPostUpdated: () => void;
 }
 
-const PostForm: React.FC<PostFormProps> = ({ postToEdit, onClose }) => {
-    const [title, setTitle] = useState(postToEdit ? postToEdit.title : "");
-    const [body, setBody] = useState(postToEdit ? postToEdit.body : "");
-    const dispatch = useDispatch<AppDispatch>();
+const PostForm: React.FC<PostFormProps> = ({ postToEdit, onClose, onPostUpdated }) => {
+    const dispatch = useDispatch<AppDispatch>(); 
+    const [title, setTitle] = useState(postToEdit.title);
+    const [body, setBody] = useState(postToEdit.body);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    useEffect(() => {
+        setTitle(postToEdit.title);
+        setBody(postToEdit.body);
+    }, [postToEdit]);
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!title || !body) return;
+        await updatePost(postToEdit.id, { title, body });
 
-        if (postToEdit) {
-            dispatch(updatePost({ id: postToEdit.id, post: { title, body } }));
-        } else {
-            dispatch(createPost({ title, body }));
-        }
-
-        setTitle("");
-        setBody("");
-        onClose(); // Call onClose after form submission
+        dispatch(fetchPosts());
+        onPostUpdated();
+        onClose();
     };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="Título"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                />
-                <textarea
-                    placeholder="Contenido"
-                    value={body}
-                    onChange={(e) => setBody(e.target.value)}
-                />
-                <button type="submit">
-                    {postToEdit ? "Actualizar" : "Crear"} Post
-                </button>
-                <button type="button" onClick={onClose}>
-                    Cancelar
-                </button>
-            </form>
-        </div>
+        <form onSubmit={handleSubmit}>
+            <h2>Editar Post</h2>
+            <input
+                type="text"
+                placeholder="Título"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+            />
+            <textarea
+                placeholder="Contenido"
+                value={body}
+                onChange={(e) => setBody(e.target.value)}
+            />
+            <button type="submit">Actualizar</button>
+            <button type="button" onClick={onClose}>Cancelar</button>
+        </form>
     );
 };
 
