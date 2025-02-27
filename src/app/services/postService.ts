@@ -1,5 +1,17 @@
 import axios from "axios";
 
+const API_URL = "https://jsonplaceholder.typicode.com/posts";
+
+export const getPosts = async (page: number = 1, limit: number = 5) => {
+    const response = await axios.get(`${API_URL}?_limit=${limit}&_page=${page}`);
+    return response.data;
+};
+
+
+
+
+/*import axios from "axios";
+
 const API_URL = "https://jsonplaceholder.typicode.com/posts"; // URL de la API
 
 export const getPosts = async () => {
@@ -22,4 +34,4 @@ export const updatePost = async (
 
 export const deletePost = async (id: number) => {
     await axios.delete(`${API_URL}/${id}`);
-};
+};*/

@@ -1,32 +1,35 @@
 import React, { PropsWithChildren } from "react";
 import { Link } from "react-router-dom";
-import "./header.component.scss"; // Estilos SCSS
+import "./header.component.scss"; // Asegúrate de que los estilos están bien importados
 
 const Header: React.FC<PropsWithChildren> = ({ children }) => {
     return (
         <header className="header">
-            <nav className="header__nav">
-                <Link to="/" className="header__nav__link">
-                    Inicio
-                </Link>
-                <Link to="/posts" className="header__nav__link">
-                    Posts
-                </Link>
-                <Link to="/about" className="header__nav__link">
-                    Sobre Nosotros
-                </Link>
-            </nav>
+            {/* Menú de navegación lateral */}
+            <div className="header__hierarchy">
+                <button className="header__hierarchy__button">☰</button>
+                <nav className="header__hierarchy__breadcrumbs">
+                    <Link to="/posts" className="breadcrumb-link">Posts</Link>
+                    <span className="breadcrumb-separator"> | </span>
+                    <Link to="/editar" className="breadcrumb-link">Editar Post</Link>
+                </nav>
+            </div>
 
-            {/* Aquí se renderizan los elementos hijos */}
-            <div className="header__content">{children}</div>
+            {/* Logo centrado */}
+            <div className="header__logo">
+                <img src="/logo.png" alt="Logo" className="header__logo__image" />
+            </div>
 
-            {/*  <div className="header__user">
-                <img
-                    src="/user-icon.png"
-                    alt="Usuario"
-                    className="header__user__icon"
-                />
-            </div>*/}
+            {/* Menú de iconos */}
+            <div className="header__menu">
+                <div className="header__menu__icon-buttons">
+                    <button className="icon-button">🔍</button>
+                    <button className="icon-button">⚙️</button>
+                </div>
+            </div>
+
+            {/* Contenido extra opcional */}
+            {children}
         </header>
     );
 };

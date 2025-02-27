@@ -1,0 +1,57 @@
+.post-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: auto;
+    background-color: #222;
+    padding: 20px;
+    border-radius: 8px;
+
+    h2 {
+        text-align: center;
+        color: white;
+    }
+
+    &__group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+
+    &__input, &__textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #555;
+        border-radius: 5px;
+        background-color: #333;
+        color: white;
+    }
+
+    &__textarea {
+        height: 100px;
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #008CBA;
+        color: white;
+        font-size: 16px;
+
+        &--cancel {
+            background-color: #444;
+        }
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}

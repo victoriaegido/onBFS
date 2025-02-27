@@ -9,3 +9,11 @@
 
 //NEW DESIGN SYSTEM
 @import "./tooltip-tokens.scss";
+
+@font-face {
+    font-family: "Font Awesome 6 Pro";
+    src:
+        local("Font Awesome 6 Pro"),
+        url("@goaigua/goaigua-styles/icons/typography/fa-light-300.ttf")
+            format("truetype");
+}

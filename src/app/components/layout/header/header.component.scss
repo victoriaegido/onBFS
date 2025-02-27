@@ -1,48 +1,79 @@
 .header {
-    width: 97vw; // Se asegura que el header cubra todo el ancho de la pantalla
-    height: 60px; // Altura del header (puedes ajustarla)
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #515763;
-    padding: 15px 20px;
-    color: white;
-    position: fixed; // Hace que el header se mantenga fijo en la parte superior
-    top: 0;
-    left: 0;
-    z-index: 1000;
+    padding: var(--spacing-04) var(--spacing-05);
+    height: 80px; /* Ajusta la altura */
+    background-color: #222; /* Fondo oscuro */
+    color: white; /* Texto blanco */
 
-    &__nav {
+    &__hierarchy {
         display: flex;
-        gap: 20px;
-        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        align-items: center;
+        gap: var(--spacing-03);
 
-        &__link {
+        &__button {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
             color: white;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
-            transition: color 0.3s;
+        }
 
-            &:hover {
-                color: #61dafb;
+        &__breadcrumbs {
+            display: flex;
+            align-items: center;
+            font-size: var(--size-02);
+
+            .breadcrumb-link {
+                color: white;
+                text-decoration: none;
+                margin: 0 var(--spacing-02);
+            }
+
+            .breadcrumb-separator {
+                color: gray;
             }
         }
     }
 
-    &__user {
+    &__logo {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-02);
+
+        &__image {
+            width: 40px; /* Tamaño fijo del logo */
+            height: 40px;
+        }
+    }
+
+    &__title {
+        font-size: var(--size-04);
+        margin: 0;
+    }
+
+    &__menu {
         display: flex;
         align-items: center;
 
-        &__icon {
-            height: 35px;
-            margin-right: 10px;
+        &__icon-buttons {
+            display: flex;
+            gap: var(--spacing-02);
+        }
+
+        .icon-button {
+            background: #333;
+            border: none;
+            padding: var(--spacing-02);
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .icon-button:hover {
+            background: #444;
         }
     }
-}
-
-// Ajustar el contenido principal para que no quede debajo del header
-.main-content {
-    margin-top: 80px; // Para dejar espacio debajo del header fijo
-    padding: 20px;
 }
