@@ -10,7 +10,6 @@ const CreatePostPage: React.FC = () => {
     const [showForm, setShowForm] = useState(true); // Mostrar el formulario por defecto
 
     const handlePostCreated = () => {
-        dispatch(fetchPosts()); // Actualiza la lista de posts tras la creación
         setShowForm(false); // Cierra el formulario tras crear el post
     };
 

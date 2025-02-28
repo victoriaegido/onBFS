@@ -23,8 +23,10 @@ const PostList: React.FC<PostListProps> = ({ onEdit }) => {
     );
 
     useEffect(() => {
-        dispatch(fetchPosts());
-    }, [dispatch]);
+        if (posts.length === 0) {
+            dispatch(fetchPosts());
+        }
+    }, [dispatch, posts.length]);
 
     return (
         <div className="post-list-container">

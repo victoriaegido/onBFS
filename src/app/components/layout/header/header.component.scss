@@ -2,16 +2,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px; 
-    height: 80px; 
-    background-color: #222; 
+    padding: 15px 20px;
+    height: 80px;
+    background-color: #222;
     color: white;
-    width: 100vw; 
+    width: 100vw;
     flex-shrink: 0;
-    position: fixed; 
+    position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000; 
+    z-index: 1000;
 
     &__hierarchy {
         display: flex;
@@ -59,7 +59,7 @@
         gap: 10px;
 
         &__image {
-            width: 45px; 
+            width: 45px;
             height: 45px;
         }
     }
@@ -101,7 +101,6 @@
     }
 }
 
-
 @media (max-width: 768px) {
     .header {
         flex-direction: column;
@@ -116,6 +115,6 @@
     }
 
     .header__hierarchy__breadcrumbs {
-        display: none; 
+        display: none;
     }
 }

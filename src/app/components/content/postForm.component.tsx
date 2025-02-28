@@ -50,7 +50,6 @@ const PostForm: React.FC = () => {
             await dispatch(
                 updatePost({ id: postToEdit.id, post: { title, body } })
             ).unwrap();
-            await dispatch(fetchPosts());
             navigate("/");
         } catch (error) {
             console.error("Error actualizando el post:", error);

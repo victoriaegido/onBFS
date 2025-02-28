@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { AppDispatch } from "@/store/store";
 import { createPost } from "../../../../store/slices/postSlice";
 import "./createPost.component.scss";
@@ -14,6 +15,7 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
     onPostCreated,
 }) => {
     const dispatch = useDispatch<AppDispatch>();
+    const navigate = useNavigate();
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
 
@@ -22,7 +24,8 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
         if (!title || !body) return;
 
         try {
-            await dispatch(createPost({ title, body })).unwrap();
+            let result = await dispatch(createPost({ title, body })).unwrap();
+            console.log("Post creado:", result);
             onPostCreated();
         } catch (error) {
             console.error("Error al crear el post:", error);
