@@ -1,0 +1,22 @@
+@import "@/app/components/layout/layout.scss";
+
+.home-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.home-page__content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}

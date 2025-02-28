@@ -34,13 +34,14 @@ const PostList: React.FC<PostListProps> = ({ onEdit }) => {
 
             <div className="post-list">
                 {posts.map((post) => (
-                    <div key={post.id ?? Math.random()}
-                         className="post-card"
-                         onClick={() => navigate(`/editar/${post.id}`)}>
+                    <div
+                        key={post.id ?? Math.random()}
+                        className="post-card"
+                        onClick={() => navigate(`/editar/${post.id}`)}
+                    >
                         <h3>{post.title}</h3>
                         <p>{post.body}</p>
-                        <div className="post-card-buttons">
-                        </div>
+                        <div className="post-card-buttons"></div>
                     </div>
                 ))}
             </div>

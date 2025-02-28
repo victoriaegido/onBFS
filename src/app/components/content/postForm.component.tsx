@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "@/store/store";
-import { updatePost } from "../../services/postService";
+import { updatePost } from "../../../store/slices/postSlice";
 import { fetchPosts } from "../../../store/slices/postSlice";
-import Breadcrumbs from "../../components/shared/breadcrumbs/breadcrumb.component";
-
 
 const PostForm: React.FC = () => {
     const { id } = useParams();
-    const postId = Number(id); // ✅ Convertir ID a número
+    const postId = Number(id);
     const navigate = useNavigate();
     const dispatch = useDispatch<AppDispatch>();
     const posts = useSelector((state: RootState) => state.posts.posts);
@@ -17,7 +15,7 @@ const PostForm: React.FC = () => {
     useEffect(() => {
         if (posts.length === 0) {
             console.log("No hay posts, cargando desde la API...");
-            dispatch(fetchPosts()); // ✅ Carga los posts si Redux está vacío
+            dispatch(fetchPosts());
         }
     }, [dispatch, posts.length]);
 
@@ -49,7 +47,9 @@ const PostForm: React.FC = () => {
         }
 
         try {
-            await updatePost({ id: postToEdit.id, title, body });
+            await dispatch(
+                updatePost({ id: postToEdit.id, post: { title, body } })
+            ).unwrap();
             await dispatch(fetchPosts());
             navigate("/");
         } catch (error) {
@@ -58,37 +58,46 @@ const PostForm: React.FC = () => {
     };
 
     return (
-        <div className="edit-post-page page"> 
-            <div className="edit-post-page__content page__content">
-                <h1>Editar Post</h1>
-                {postToEdit ? (
-                    <form onSubmit={handleUpdate} className="edit-post-form">
-                        <input
-                            type="text"
-                            placeholder="Título"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                        />
-                        <textarea
-                            placeholder="Contenido"
-                            value={body}
-                            onChange={(e) => setBody(e.target.value)}
-                        />
-                        <div className="edit-post-buttons">
-                            <button type="submit">Actualizar</button>
-                            <button type="button" onClick={() => navigate("/")}>
-                                Cancelar
-                            </button>
-                        </div>
-                    </form>
-                ) : (
-                    <p>Cargando post...</p>
-                )}
+        <div className="edit-post-page">
+            <div className="edit-post-page__content">
+                <h2 className="edit-post-page__title">Editar Post</h2>
+                <form className="edit-post-page__form" onSubmit={handleUpdate}>
+                    <label className="edit-post-page__label">Título:</label>
+                    <input
+                        type="text"
+                        className="edit-post-page__input"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        required
+                    />
+
+                    <label className="edit-post-page__label">Contenido:</label>
+                    <textarea
+                        className="edit-post-page__textarea"
+                        value={body}
+                        onChange={(e) => setBody(e.target.value)}
+                        required
+                    ></textarea>
+
+                    <div className="edit-post-page__buttons">
+                        <button
+                            type="submit"
+                            className="edit-post-page__button edit-post-page__button--save"
+                        >
+                            Guardar
+                        </button>
+                        <button
+                            type="button"
+                            className="edit-post-page__button edit-post-page__button--cancel"
+                            onClick={() => navigate("/")}
+                        >
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     );
-    
-    
-}
+};
 
 export default PostForm;

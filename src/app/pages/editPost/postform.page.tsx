@@ -3,12 +3,13 @@ import PostForm from "../../../app/components/content/postForm.component";
 import Breadcrumbs from "../../components/shared/breadcrumbs/breadcrumb.component";
 import "./post.page.scss";
 
-
 const EditPage: React.FC = () => {
     return (
-        <div>
+        <div className="page-layout">
             <Breadcrumbs />
-            <PostForm/>
+            <div className="edit-post-content">
+                <PostForm />
+            </div>
         </div>
     );
 };

@@ -1,63 +1,99 @@
-.edit-post-container {
-    min-height: calc(100vh - 60px); // ✅ Restamos la altura del Header
+.edit-post-page {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    min-height: calc(
+        100vh - var(--goaigua-header-height)
+    ); /* Evita superposición con el header */
+    width: 100vw;
     padding: 20px;
-    text-align: center;
-}
-
-
-.edit-post-form {
-    background-color: #222;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
-    width: 100%;
-    max-width: 600px; // ✅ Ajusta el tamaño para que no sea demasiado grande
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.edit-post-form input,
-.edit-post-form textarea {
-    width: 100%;
-    padding: 12px;
-    border-radius: 5px;
-    border: none;
-    background-color: #333;
+    background-color: #242424; /* Fondo oscuro */
     color: white;
-    font-size: 16px;
-}
+    margin-top: 50px;
 
-.edit-post-form textarea {
-    min-height: 150px;
-    resize: vertical; // ✅ Permite redimensionar si es necesario
-}
+    &__content {
+        width: 100%;
+        max-width: 800px;
+        padding: 30px;
+        background-color: #222;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
 
-.edit-post-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-}
+    &__form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+    }
 
-.edit-post-buttons button {
-    padding: 12px 15px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-}
+    &__label {
+        font-size: 16px;
+        font-weight: bold;
+        color: #ddd;
+    }
 
-.edit-post-buttons button:first-child {
-    background-color: #70dbff;
-    color: black;
-}
+    &__input,
+    &__textarea {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #444;
+        background-color: #333;
+        color: white;
+        font-size: 16px;
+        transition: all 0.3s ease;
+    }
 
-.edit-post-buttons button:last-child {
-    background-color: rgb(250, 105, 105);
-    color: white;
+    &__input:focus,
+    &__textarea:focus {
+        outline: none;
+        border-color: #70dbff;
+        box-shadow: 0 0 8px rgba(112, 219, 255, 0.6);
+    }
+
+    &__textarea {
+        min-height: 200px;
+        resize: vertical;
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    &__button {
+        padding: 12px 15px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background 0.3s ease, transform 0.2s ease;
+
+        &--save {
+            background-color: #70dbff;
+            color: black;
+        }
+
+        &--save:hover {
+            background-color: #57b8d6;
+            transform: scale(1.05);
+        }
+
+        &--cancel {
+            background-color: #fa6969;
+            color: black;
+        }
+
+        &--cancel:hover {
+            background-color: #eb5555;
+            transform: scale(1.05);
+        }
+    }
 }

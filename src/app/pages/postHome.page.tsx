@@ -4,12 +4,12 @@ import Breadcrumbs from "../components/shared/breadcrumbs/breadcrumb.component";
 
 const HomePage: React.FC = () => {
     return (
-        <div className="home-page page">
-        <Breadcrumbs />
-        <div className="home-page__content page__content">
-            <PostList onEdit={() => {}} />
+        <div className="page-layout">
+            <Breadcrumbs />
+            <div className="home-page__content page__content">
+                <PostList onEdit={() => {}} />
+            </div>
         </div>
-    </div>
     );
 };
 

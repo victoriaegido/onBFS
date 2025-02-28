@@ -1,47 +1,30 @@
-/*import React, { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import PostList from "../../../app/components/content/PostList/postList.component";
-import PostForm from "../../components/content/postForm.component";
+import CreatePostForm from "../../components/content/createPost/createPost.component";
 import { fetchPosts } from "../../../store/slices/postSlice";
 import { AppDispatch } from "@/store/store";
 import Breadcrumbs from "../../components/shared/breadcrumbs/breadcrumb.component";
 
-const PostsPage: React.FC = () => {
+const CreatePostPage: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
-    const [showForm, setShowForm] = useState(false);
-    const [postToEdit, setPostToEdit] = useState<{
-        id: number;
-        title: string;
-        body: string;
-    } | null>(null);
+    const [showForm, setShowForm] = useState(true); // Mostrar el formulario por defecto
 
-    const handlePostUpdated = () => {
-        dispatch(fetchPosts()); // Recargar la lista tras actualizar un post
+    const handlePostCreated = () => {
+        dispatch(fetchPosts()); // Actualiza la lista de posts tras la creación
+        setShowForm(false); // Cierra el formulario tras crear el post
     };
 
     return (
         <div>
             <Breadcrumbs />
-
-            {showForm && postToEdit !== null && (
-                <PostForm
-                    postToEdit={postToEdit}
-                    onClose={() => {
-                        setShowForm(false);
-                        setPostToEdit(null); // Restablecer el post después de cerrar
-                    }}
-                    onPostUpdated={handlePostUpdated}
+            {showForm && (
+                <CreatePostForm
+                    onClose={() => setShowForm(false)}
+                    onPostCreated={handlePostCreated}
                 />
             )}
-
-            <PostList
-                onEdit={(post) => {
-                    setPostToEdit(post);
-                    setShowForm(true);
-                }}
-            />
         </div>
     );
 };
 
-export default PostsPage;*/
+export default CreatePostPage;

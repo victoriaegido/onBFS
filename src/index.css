@@ -1,18 +1,21 @@
-:root {
-    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
-
-    color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 320px;
+    min-height: 100vh;
     background-color: #242424;
-
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    color: white;
 }
 
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Se asegura de que la página tenga altura completa */
+}
+
+/* ======= Estilos de Elementos Generales ======= */
 a {
     font-weight: 500;
     color: #646cff;
@@ -25,16 +28,21 @@ a:hover {
 body {
     margin: 0;
     display: flex;
-    place-items: center;
+    flex-direction: column;
+    align-items: center;
     min-width: 320px;
     min-height: 100vh;
+    background-color: #242424;
+    color: white;
 }
 
+/* ======= Tipografía ======= */
 h1 {
     font-size: 3.2em;
     line-height: 1.1;
 }
 
+/* ======= Botones ======= */
 button {
     border-radius: 8px;
     border: 1px solid transparent;
@@ -43,6 +51,7 @@ button {
     font-weight: 500;
     font-family: inherit;
     background-color: #1a1a1a;
+    color: white;
     cursor: pointer;
     transition: border-color 0.25s;
 }
@@ -54,6 +63,7 @@ button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* ======= Media Queries (Modo Claro) ======= */
 @media (prefers-color-scheme: light) {
     :root {
         color: #213547;
@@ -65,4 +75,64 @@ button:focus-visible {
     button {
         background-color: #f9f9f9;
     }
+}
+
+/* ======= Reset CSS y DevExtreme Overwrite ======= */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+div {
+    font-family: "Open Sans", sans-serif;
+}
+
+/* ======= Ajustes para DevExtreme ======= */
+.dx-icon,
+.dx-treelist-expanded span::before,
+.dx-treelist-collapsed span::before {
+    font-family: "DXIcons", sans-serif !important;
+}
+
+/* ======= Importación de Fuente Font Awesome Pro ======= */
+@font-face {
+    font-family: "Font Awesome 6 Pro";
+    src: local("Font Awesome 6 Pro"),
+        url("@goaigua/goaigua-styles/icons/typography/fa-light-300.ttf")
+            format("truetype");
+}
+
+/* ======= Ajustes Generales ======= */
+body {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    text-align: left;
+}
+
+svg.svg-library {
+    height: 1em;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace !important;
+}
+
+/* ======= Ajustes para el Root del Proyecto ======= */
+#root {
+    height: 100%;
+}
+
+#toasts {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    align-items: flex-end;
+    width: fit-content;
+    height: 100vh;
+    overflow: auto;
+    padding: var(--spacing-03);
 }
