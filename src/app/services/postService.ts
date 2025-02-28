@@ -12,14 +12,16 @@ export const createPost = async (post: { title: string; body: string }) => {
     return response.data;
 };
 
-export const updatePost = async (
-    id: number,
-    post: { title: string; body: string }
-) => {
+export const updatePost = async (post: {
+    id: number;
+    title: string;
+    body: string;
+}) => {
     const response = await axios.put(
-        `https://jsonplaceholder.typicode.com/posts/${id}`,
+        `https://jsonplaceholder.typicode.com/posts/${post.id}`,
         post
     );
+    console.log("Respuesta del servidor:", response.data);
     return response.data;
 };
 

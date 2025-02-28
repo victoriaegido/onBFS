@@ -1,0 +1,124 @@
+.card {
+    padding: var(--spacing-05);
+    border-radius: 5px;
+    gap: var(--gap-04);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-1);
+}
+
+.filters {
+    display: flex;
+    align-items: end;
+    gap: var(--gap-02);
+
+    width: 100%;
+}
+
+.filter {
+    width: 200px;
+}
+
+.page {
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-04);
+    height: 100%;
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        overflow-y: auto;
+        gap: var(--spacing-07);
+    }
+
+    .tabs {
+        &__content {
+            overflow: auto;
+        }
+    }
+}
+
+.tab {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-04);
+    height: 100%;
+}
+
+.widget {
+    display: flex;
+    justify-content: space-evenly;
+
+    &__group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-07);
+
+        &__row {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-05);
+
+            &__title {
+                width: 100px;
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+}
+
+.widget {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-05);
+
+    &__example {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-08);
+        padding: var(--spacing-05);
+
+        &__group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-04);
+
+            &__title {
+                font-weight: bold;
+                font-size: var(--size-04);
+            }
+
+            &__content {
+                display: flex;
+                align-items: center;
+                gap: var(--spacing-06);
+
+                &__component {
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1 1 0;
+                    gap: var(--spacing-05);
+
+                    &__item {
+                        display: flex;
+                        gap: var(--spacing-08);
+                        align-items: center;
+                        align-self: center;
+                    }
+                }
+
+                &__code-example {
+                    flex: 1 1 0;
+                }
+            }
+        }
+    }
+
+    &__code {
+        overflow: auto;
+    }
+}

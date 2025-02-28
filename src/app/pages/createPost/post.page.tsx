@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+/*import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import PostList from "../../components/content/PostList";
-import PostForm from "../../components/content/PostForm";
+import PostList from "../../../app/components/content/PostList/postList.component";
+import PostForm from "../../components/content/postForm.component";
 import { fetchPosts } from "../../../store/slices/postSlice";
 import { AppDispatch } from "@/store/store";
 import Breadcrumbs from "../../components/shared/breadcrumbs/breadcrumb.component";
@@ -9,7 +9,11 @@ import Breadcrumbs from "../../components/shared/breadcrumbs/breadcrumb.componen
 const PostsPage: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
     const [showForm, setShowForm] = useState(false);
-    const [postToEdit, setPostToEdit] = useState<{ id: number; title: string; body: string } | null>(null);
+    const [postToEdit, setPostToEdit] = useState<{
+        id: number;
+        title: string;
+        body: string;
+    } | null>(null);
 
     const handlePostUpdated = () => {
         dispatch(fetchPosts()); // Recargar la lista tras actualizar un post
@@ -40,4 +44,4 @@ const PostsPage: React.FC = () => {
     );
 };
 
-export default PostsPage;
+export default PostsPage;*/

@@ -1,55 +1,63 @@
-.full-page {
+.edit-post-container {
+    min-height: calc(100vh - 60px); // ✅ Restamos la altura del Header
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    height: 100vh;  // Ocupar toda la altura de la pantalla
-    width: 100vw;   // Ocupar todo el ancho disponible
-}
-
-.post-form-container {
-    width: 60%;  // Ajusta el tamaño del formulario
-    max-width: 800px; 
-    background-color: #222;
+    align-items: center;
+    width: 100%;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+    text-align: center;
 }
 
-.post-form {
+
+.edit-post-form {
+    background-color: #222;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+    width: 100%;
+    max-width: 600px; // ✅ Ajusta el tamaño para que no sea demasiado grande
     display: flex;
     flex-direction: column;
-    width: 100%;
-    gap: 10px;
+    gap: 15px;
 }
 
-.post-input,
-.post-textarea {
+.edit-post-form input,
+.edit-post-form textarea {
     width: 100%;
     padding: 12px;
-    font-size: 16px;
-    border: 1px solid #555;
     border-radius: 5px;
+    border: none;
     background-color: #333;
     color: white;
+    font-size: 16px;
 }
 
-.post-textarea {
-    height: 150px;
+.edit-post-form textarea {
+    min-height: 150px;
+    resize: vertical; // ✅ Permite redimensionar si es necesario
 }
 
-.post-button {
-    width: 100%;
-    padding: 12px;
-    font-size: 18px;
+.edit-post-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.edit-post-buttons button {
+    padding: 12px 15px;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-    background-color: #008CBA;
-    color: white;
-    font-weight: bold;
+    border-radius: 5px;
+    font-size: 16px;
+}
 
-    &:hover {
-        opacity: 0.8;
-    }
+.edit-post-buttons button:first-child {
+    background-color: #70dbff;
+    color: black;
+}
+
+.edit-post-buttons button:last-child {
+    background-color: rgb(250, 105, 105);
+    color: white;
 }
