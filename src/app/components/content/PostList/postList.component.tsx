@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPosts } from "../../../../store/slices/postSlice";
+import { fetchPosts, deletePost } from "../../../../store/slices/postSlice";
 import { RootState, AppDispatch } from "../../../../store/store";
 import { useNavigate } from "react-router-dom";
+import { FaRegTrashAlt } from "react-icons/fa";
 import "./postlist.component.scss";
 
 interface Post {
@@ -28,6 +29,20 @@ const PostList: React.FC<PostListProps> = ({ onEdit }) => {
         }
     }, [dispatch, posts.length]);
 
+    const handleDelete = async (id: number, e: React.MouseEvent) => {
+        e.stopPropagation(); // Evita que la tarjeta navegue al hacer clic en "Eliminar"
+
+        if (window.confirm("¿Seguro que quieres eliminar este post?")) {
+            try {
+                await dispatch(deletePost(id)).unwrap();
+                console.log(`Post con ID ${id} eliminado.`);
+            } catch (error) {
+                console.error("Error al eliminar el post:", error);
+            }
+        }
+    };
+
+
     return (
         <div className="post-list-container">
             <h1>Lista de Posts</h1>
@@ -43,7 +58,12 @@ const PostList: React.FC<PostListProps> = ({ onEdit }) => {
                     >
                         <h3>{post.title}</h3>
                         <p>{post.body}</p>
-                        <div className="post-card-buttons"></div>
+                        <div className="post-card-buttons"><button
+                                className="delete-btn"
+                                onClick={(e) => handleDelete(post.id!, e)}
+                            >
+                                <FaRegTrashAlt/> Eliminar
+                            </button></div>
                     </div>
                 ))}
             </div>

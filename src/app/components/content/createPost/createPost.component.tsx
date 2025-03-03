@@ -27,6 +27,7 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
             let result = await dispatch(createPost({ title, body })).unwrap();
             console.log("Post creado:", result);
             onPostCreated();
+            navigate("/");
         } catch (error) {
             console.error("Error al crear el post:", error);
         }
