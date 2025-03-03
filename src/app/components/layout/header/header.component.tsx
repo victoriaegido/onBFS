@@ -12,7 +12,7 @@ const Header: React.FC<PropsWithChildren> = ({ children }) => {
                     <FaBars /> {/* Icono de menú */}
                 </button>
                 <nav className="header__hierarchy__breadcrumbs">
-                    <Link to="/posts" className="breadcrumb-link">
+                    <Link to="/" className="breadcrumb-link">
                         Posts
                     </Link>
                     <span className="breadcrumb-separator"> | </span>
