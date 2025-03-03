@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import CreatePostForm from "../../components/content/createPost/createPost.component";
-import { fetchPosts } from "../../../store/slices/postSlice";
 import { AppDispatch } from "@/store/store";
 import Breadcrumbs from "../../components/shared/breadcrumbs/breadcrumb.component";
 

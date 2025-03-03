@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from "react";
 import { Link } from "react-router-dom";
-import { FaSearch, FaCog, FaBars } from "react-icons/fa"; // Importamos íconos de FontAwesome
+import { FaCog, FaBars } from "react-icons/fa"; // Importamos íconos de FontAwesome
 import "./header.component.scss"; // Asegúrate de que los estilos están bien importados
 
 const Header: React.FC<PropsWithChildren> = ({ children }) => {
@@ -25,9 +25,6 @@ const Header: React.FC<PropsWithChildren> = ({ children }) => {
             {/* Menú de la derecha */}
             <div className="header__menu">
                 <div className="header__menu__icon-buttons">
-                    <button className="icon-button">
-                        <FaSearch /> {/* Icono de búsqueda */}
-                    </button>
                     <button className="icon-button">
                         <FaCog /> {/* Icono de configuración */}
                     </button>

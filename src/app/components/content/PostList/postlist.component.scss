@@ -35,10 +35,15 @@
 }
 
 .post-card-buttons {
-    display: flex;
-    justify-content: flex-end;
+    display: none; /* Oculta los botones por defecto */
     margin-top: 10px;
 }
+
+.post-card:hover .post-card-buttons {
+    display: flex; /* Muestra los botones cuando el usuario pasa el mouse */
+    justify-content: center;
+}
+
 
 .delete-btn {
     background-color: #fa6969;
