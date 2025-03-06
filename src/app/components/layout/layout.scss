@@ -24,7 +24,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--spacing-04);
-    min-height: 100vh; /* Asegura que la página tenga altura completa */
+    min-height: 100vh;
 
     &__content {
         display: flex;
@@ -32,9 +32,7 @@
         flex-grow: 1;
         overflow-y: auto;
         gap: var(--spacing-07);
-        min-height: calc(
-            100vh - 80px
-        ); /* Mantiene el espacio si no hay contenido */
+        min-height: calc(100vh - 80px);
     }
 }
 

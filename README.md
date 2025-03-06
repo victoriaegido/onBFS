@@ -1,50 +1,55 @@
-# React + TypeScript + Vite
+# Base Project with React - onBFS
+This project, developed with React and pnpm, is designed to practice key React concepts and the use of reusable components. Its goal is to provide a clear and stable code structure that ensures proper maintainability and scalability.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ # Technologies used
+    - **React**: JavaScript library for building dynamic and efficent user interfaces.
+    - **React Router**: Library for managing navigation between pages in React application.
+    - **pnpm**: Fast and efficient package manager that optimizes disk space usage.
+    - **TypeScript**: Superset of JavaScript that adds static typing for better safety and development experience.
+    - **SCSS**: CSS extension that allows for more structured and reusable styles.
 
-Currently, two official plugins are available:
+# Project Setup
+ ## 1. Install dependencies 
+        To install the project dependencies, open a terminal in the root folder and execute the following command:
+        ```bash
+            pnpm install
+        ```
 
--   [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
--   [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ ## 2. Execute the project
+        To run the project, open a terminal and execute the following command:
+        ```bash
+            pnpm install
+        ```
+        This will start the app at http;//localhost:3000/
 
-## Expanding the ESLint configuration
+ ## 3. Others commands
+        
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# Project Structure
+src
+├─── app
+|    ├─── components
+|    |    ├─── content
+|    |    ├─── layout
+|    |    ├─── shared
+|    |    
+|    ├─── routes
+|    ├─── pages
+|    |    
+|    ├─── services
+|    ├─── store
+|    |    ├─── slices
+├─── assets
+└─── styles
 
--   Configure the top-level `parserOptions` property like this:
+- **`components/content`**: Contains the components responsible for structuring the main content of each page.
+- **`components/layout`**: Contains the components responsible for the overall structure of the application.
+- **`components/shared`**: Contains reusable components that can be used across different parts of the application.
 
-```js
-export default tseslint.config({
-    languageOptions: {
-        // other options...
-        parserOptions: {
-            project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-            tsconfigRootDir: import.meta.dirname,
-        },
-    },
-});
-```
+- **`pages`**: Contains the files that represent the different pages of the application.
 
--   Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
--   Optionally add `...tseslint.configs.stylisticTypeChecked`
--   Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **`routes`**: Contains the application's route configuration. It defines how navigation between different pages works ans which components are rendered for each route.
 
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
+- **`store`**: Contains the configuration of the application's global state using Redux Toolkit. it icludes the estore setup and slices, which define the logic and actions for handling the state of posts and other entities.
 
-export default tseslint.config({
-    // Set the react version
-    settings: { react: { version: "18.3" } },
-    plugins: {
-        // Add the react plugin
-        react,
-    },
-    rules: {
-        // other rules...
-        // Enable its recommended rules
-        ...react.configs.recommended.rules,
-        ...react.configs["jsx-runtime"].rules,
-    },
-});
-```
+- **`styles`**: Contains global styles.

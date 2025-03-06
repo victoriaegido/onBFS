@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { AppDispatch } from "@/store/store";
-import { createPost } from "../../../../store/slices/postSlice";
+import { AppDispatch } from "@/app/store/store";
+import { createPost } from "../../../store/slices/postSlice";
+import Form from "../../shared/form/form.component";
 import "./createPost.component.scss";
 
 interface CreatePostFormProps {
@@ -34,53 +35,15 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
     };
 
     return (
-        <div className="design-system-page">
-            <div className="design-system-page__content">
-                <h2 className="design-system-page__content__title">
-                    Crear Nuevo Post
-                </h2>
-                <form
-                    className="design-system-page__content__form"
-                    onSubmit={handleSubmit}
-                >
-                    <label className="design-system-page__content__label">
-                        Título:
-                    </label>
-                    <input
-                        type="text"
-                        className="design-system-page__content__input"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        required
-                    />
-
-                    <label className="design-system-page__content__label">
-                        Contenido:
-                    </label>
-                    <textarea
-                        className="design-system-page__content__textarea"
-                        value={body}
-                        onChange={(e) => setBody(e.target.value)}
-                        required
-                    ></textarea>
-
-                    <div className="design-system-page__content__buttons">
-                        <button
-                            type="submit"
-                            className="design-system-page__content__button design-system-page__content__button--submit"
-                        >
-                            Publicar
-                        </button>
-                        <button
-                            type="button"
-                            className="design-system-page__content__button design-system-page__content__button--cancel"
-                        >
-                            Cancelar
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
+        <Form
+            title={title}
+            body={body}
+            setTitle={setTitle}
+            setBody={setBody}
+            onSubmit={handleSubmit}
+            onCancel={() => navigate("/")}
+            formTitle="Crear Nuevo Post"
+        />
     );
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import "./breadcrum.component.scss";
+import "./breadcrumb.component.scss";
 
 const Breadcrumbs: React.FC = () => {
     const location = useLocation();
@@ -12,8 +12,8 @@ const Breadcrumbs: React.FC = () => {
             {paths.map((path, index) => {
                 const url = `/${paths.slice(0, index + 1).join("/")}`;
                 return (
-                    <span key={index}>
-                        {"/"}
+                    <span key={index} className="breadcrumbs-separator">
+                        {"/ "}
                         <Link to={url}>{path}</Link>
                     </span>
                 );

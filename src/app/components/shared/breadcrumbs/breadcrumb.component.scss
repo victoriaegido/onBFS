@@ -1,0 +1,35 @@
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-01);
+    font-size: var(--measure-14);
+    font-weight: 400;
+    margin-top: 100px;
+    margin-left: 50px;
+
+    a {
+        color: #61dafb !important;
+        text-decoration: none;
+        transition: color 0.3s ease-in-out !important;
+
+        &:hover {
+            color: #61dafb !important;
+        }
+
+        &:visited {
+            color: #61dafb !important;
+        }
+
+        &:active {
+            color: #61dafb !important;
+        }
+    }
+
+    & > span:last-of-type {
+        font-weight: var(--font-weight-bold);
+    }
+
+    &-separator {
+        color: #61dafb;
+    }
+}

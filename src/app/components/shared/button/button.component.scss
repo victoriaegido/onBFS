@@ -1,0 +1,29 @@
+.go-button {
+    display: flex;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease, transform 0.2s ease;
+
+    &--submit {
+        background-color: #70dbff;
+        color: black;
+    }
+
+    &--submit:hover {
+        background-color: #1ebaee;
+        transform: scale(1.05);
+    }
+
+    &--cancel {
+        background-color: #fa6969;
+        color: black;
+    }
+
+    &--cancel:hover {
+        background-color: #eb5555;
+        transform: scale(1.05);
+    }
+}

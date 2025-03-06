@@ -1,32 +1,39 @@
-.edit-post-page {
+.post-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - var(--goaigua-header-height));
+    height: 100vh;
     width: 100vw;
-    padding: 20px;
     background-color: #242424;
     color: white;
-    margin-top: 50px;
 
     &__content {
-        width: 100%;
-        max-width: 800px;
-        padding: 30px;
-        background-color: #222;
-        border-radius: 10px;
-        box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
         display: flex;
         flex-direction: column;
-        gap: 15px;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 600px;
+        background-color: #1e1e1e;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+    }
+
+    &__title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #ffffff;
+        text-shadow: 1px 1px 8px rgba(255, 255, 255, 0.3);
     }
 
     &__form {
         display: flex;
         flex-direction: column;
         width: 100%;
-        gap: 15px;
+        gap: 16px;
     }
 
     &__label {
@@ -44,6 +51,7 @@
         background-color: #333;
         color: white;
         font-size: 16px;
+        font-family: "Poppins", sans-serif;
         transition: all 0.3s ease;
     }
 
@@ -55,42 +63,15 @@
     }
 
     &__textarea {
-        min-height: 200px;
+        min-height: 120px;
         resize: vertical;
     }
 
     &__buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 10px;
-    }
-
-    &__button {
-        padding: 12px 15px;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-        font-size: 16px;
-        transition: background 0.3s ease, transform 0.2s ease;
-
-        &--save {
-            background-color: #70dbff;
-            color: black;
-        }
-
-        &--save:hover {
-            background-color: #57b8d6;
-            transform: scale(1.05);
-        }
-
-        &--cancel {
-            background-color: #fa6969;
-            color: black;
-        }
-
-        &--cancel:hover {
-            background-color: #eb5555;
-            transform: scale(1.05);
-        }
+        width: 100%;
+        gap: 16px;
+        margin-top: 20px;
     }
 }

@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPosts, deletePost } from "../../../../store/slices/postSlice";
-import { RootState, AppDispatch } from "../../../../store/store";
+import { fetchPosts, deletePost } from "../../../store/slices/postSlice";
+import { RootState, AppDispatch } from "../../../store/store";
 import { useNavigate } from "react-router-dom";
-import { FaRegTrashAlt, FaSearch } from "react-icons/fa";
+import SearchBar from "../../shared/searchbar/searchbar.component";
+import PaginationButton from "../../shared/paging-button/pagingb.component";
+import TrashIcon from "../../../../../node_modules/@goaigua/goaigua-styles/icons/libraries/ux/formating/trash.svg";
+import EditIcon from "../../../../../node_modules/@goaigua/goaigua-styles/icons/libraries/ux/files/edit.svg";
+import SearchIcon from "../../../../../node_modules/@goaigua/goaigua-styles/icons/libraries/ux/navigation/search.svg";
+import LeftArrow from "../../../../../node_modules/@goaigua/goaigua-styles/icons/libraries/ux/navigation/chevron-left.svg";
+import RigthArrow from "../../../../../node_modules/@goaigua/goaigua-styles/icons/libraries/ux/navigation/chevron-right.svg";
+import PostCard from "../../shared/postCard/postCard.component";
 import "./postlist.component.scss";
 
 interface Post {
@@ -28,7 +35,6 @@ const PostList: React.FC<PostListProps> = ({ onEdit }) => {
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    
 
     useEffect(() => {
         if (posts.length === 0) {
@@ -36,17 +42,16 @@ const PostList: React.FC<PostListProps> = ({ onEdit }) => {
         }
     }, [dispatch, posts.length]);
 
-
-    const filteredPosts = posts.filter((post) => 
+    const filteredPosts = posts.filter((post) =>
         post.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    const currentPosts = filteredPosts.slice(indexOfFirstPost,indexOfLastPost);
+    const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
 
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
     const handleDelete = async (id: number, e: React.MouseEvent) => {
-        e.stopPropagation(); // Evita que la tarjeta navegue al hacer clic en "Eliminar"
+        e.stopPropagation();
 
         if (window.confirm("¿Seguro que quieres eliminar este post?")) {
             try {
@@ -58,77 +63,66 @@ const PostList: React.FC<PostListProps> = ({ onEdit }) => {
         }
     };
 
-
     return (
         <div className="post-list-container">
             <h1>Lista de Posts</h1>
 
-            <div className="search-container">
-    <input
-        type="text"
-        placeholder="Buscar por título"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="search-input"
-    />
-    <FaSearch className="search-icon" />
-</div>
+            <SearchBar
+                searchTerm={searchTerm}
+                onSearchChange={(e) => setSearchTerm(e.target.value)}
+                iconSrc={SearchIcon}
+            />
 
             {loading && <p>Cargando...</p>}
             {error && <p>{error}</p>}
 
             <div className="post-list">
-            {currentPosts.length > 0 ? (
+                {currentPosts.length > 0 ? (
                     currentPosts.map((post) => (
-                        <div
+                        <PostCard
                             key={post.id ?? Math.random()}
-                            className="post-card"
-                            onClick={() => navigate(`/editar/${post.id}`)}
-                        >
-                        <h3>{post.title}</h3>
-                        <p>{post.body}</p>
-                        <div className="post-card-buttons"><button
-                                className="delete-btn"
-                                onClick={(e) => handleDelete(post.id!, e)}
-                            >
-                                <FaRegTrashAlt/> Eliminar
-                            </button></div>
-                    </div>
-                ))
-             ) : (
+                            title={post.title}
+                            body={post.body}
+                            onEdit={() => navigate(`/editar/${post.id}`)}
+                            onDelete={(e) => handleDelete(post.id!, e)}
+                            editIcon={EditIcon}
+                            deleteIcon={TrashIcon}
+                        />
+                    ))
+                ) : (
                     <p>No se encontraron posts</p>
                 )}
             </div>
 
             <div className="pagination">
-                <button
+                <PaginationButton
                     onClick={() => paginate(currentPage - 1)}
                     disabled={currentPage === 1}
-                    className="pagination-btn"
                 >
-                    ◀
-                </button>
-                {[...Array(Math.ceil(filteredPosts.length / postsPerPage))].map((_, index) => (
-                    <button
-                        key={index}
-                        className={`pagination-btn ${currentPage === index + 1 ? "active" : ""}`}
-                        onClick={() => paginate(index + 1)}
-                    >
-                        {index + 1}
-                    </button>
-                ))}
-                <button
+                    <img src={LeftArrow} alt="Anterior" />
+                </PaginationButton>
+                {[...Array(Math.ceil(filteredPosts.length / postsPerPage))].map(
+                    (_, index) => (
+                        <PaginationButton
+                            key={index}
+                            onClick={() => paginate(index + 1)}
+                            active={currentPage === index + 1}
+                        >
+                            {index + 1}
+                        </PaginationButton>
+                    )
+                )}
+                <PaginationButton
                     onClick={() => paginate(currentPage + 1)}
-                    disabled={currentPage === Math.ceil(filteredPosts.length / postsPerPage)}
-                    className="pagination-btn"
+                    disabled={
+                        currentPage ===
+                        Math.ceil(filteredPosts.length / postsPerPage)
+                    }
                 >
-                    ▶
-                </button>
+                    <img src={RigthArrow} alt="Anterior" />
+                </PaginationButton>
             </div>
-
         </div>
-
-        
     );
 };
 

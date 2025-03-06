@@ -1,5 +1,5 @@
 import React from "react";
-import PostForm from "../../../app/components/content/postForm.component";
+import PostForm from "../..//components/content/editPost/editPost.component";
 import Breadcrumbs from "../../components/shared/breadcrumbs/breadcrumb.component";
 import "./post.page.scss";
 

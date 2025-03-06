@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "@/store/store";
+import { RootState, AppDispatch } from "@/app/store/store";
 import { updatePost } from "../../../store/slices/postSlice";
 import { fetchPosts } from "../../../store/slices/postSlice";
+import "./editPost.component.scss";
+import Form from "../../shared/form/form.component";
 
 const PostForm: React.FC = () => {
     const { id } = useParams();
@@ -57,45 +59,15 @@ const PostForm: React.FC = () => {
     };
 
     return (
-        <div className="edit-post-page">
-            <div className="edit-post-page__content">
-                <h2 className="edit-post-page__title">Editar Post</h2>
-                <form className="edit-post-page__form" onSubmit={handleUpdate}>
-                    <label className="edit-post-page__label">Título:</label>
-                    <input
-                        type="text"
-                        className="edit-post-page__input"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        required
-                    />
-
-                    <label className="edit-post-page__label">Contenido:</label>
-                    <textarea
-                        className="edit-post-page__textarea"
-                        value={body}
-                        onChange={(e) => setBody(e.target.value)}
-                        required
-                    ></textarea>
-
-                    <div className="edit-post-page__buttons">
-                        <button
-                            type="submit"
-                            className="edit-post-page__button edit-post-page__button--save"
-                        >
-                            Guardar
-                        </button>
-                        <button
-                            type="button"
-                            className="edit-post-page__button edit-post-page__button--cancel"
-                            onClick={() => navigate("/")}
-                        >
-                            Cancelar
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
+        <Form
+            title={title}
+            body={body}
+            setTitle={setTitle}
+            setBody={setBody}
+            onSubmit={handleUpdate}
+            onCancel={() => navigate("/")}
+            formTitle="Editar Post"
+        />
     );
 };
 

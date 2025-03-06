@@ -42,11 +42,36 @@ export const createPost = createAsyncThunk(
 // Update post
 export const updatePost = createAsyncThunk(
     "posts/updatePost",
+    async (
+        { id, post }: { id: number; post: Post },
+        { getState, rejectWithValue }
+    ) => {
+        const state = getState() as { posts: PostState };
+        const existingPost = state.posts.posts.find((p) => p.id === id);
+
+        if (!existingPost) {
+            return rejectWithValue("El post no existe en el estado local.");
+        }
+
+        if (id <= 100) {
+            const response = await axios.put(`${API_URL}/${id}`, post);
+            return response.data;
+        } else {
+            return { ...existingPost, ...post };
+        }
+    }
+);
+
+/*
+    Este es el código correcto cuando se pueda crear el back
+
+export const updatePost = createAsyncThunk(
+    "posts/updatePost",
     async ({ id, post }: { id: number; post: Post }) => {
         const response = await axios.put(`${API_URL}/${id}`, post);
         return response.data;
     }
-);
+);*/
 
 // Delete post
 export const deletePost = createAsyncThunk(
@@ -76,8 +101,14 @@ const postSlice = createSlice({
                     action.error.message || "Error al cargar los posts";
             })
             .addCase(createPost.fulfilled, (state, action) => {
-                state.posts.push(action.payload);
+                const maxId =
+                    state.posts.length > 0
+                        ? Math.max(...state.posts.map((post) => post.id!))
+                        : 100;
+                const newPost = { ...action.payload, id: maxId + 1 };
+                state.posts.push(newPost);
             })
+
             .addCase(updatePost.fulfilled, (state, action) => {
                 const index = state.posts.findIndex(
                     (post) => post.id === action.payload.id

@@ -1,15 +1,14 @@
 import React, { PropsWithChildren } from "react";
 import { Link } from "react-router-dom";
-import { FaCog, FaBars } from "react-icons/fa"; // Importamos íconos de FontAwesome
-import "./header.component.scss"; // Asegúrate de que los estilos están bien importados
+import { FaCog, FaBars } from "react-icons/fa";
+import "./header.component.scss";
 
 const Header: React.FC<PropsWithChildren> = ({ children }) => {
     return (
         <header className="header">
-            {/* Menú de navegación lateral */}
             <div className="header__hierarchy">
                 <button className="header__hierarchy__button">
-                    <FaBars /> {/* Icono de menú */}
+                    <FaBars />
                 </button>
                 <nav className="header__hierarchy__breadcrumbs">
                     <Link to="/" className="breadcrumb-link">
@@ -22,11 +21,10 @@ const Header: React.FC<PropsWithChildren> = ({ children }) => {
                 </nav>
             </div>
 
-            {/* Menú de la derecha */}
             <div className="header__menu">
                 <div className="header__menu__icon-buttons">
                     <button className="icon-button">
-                        <FaCog /> {/* Icono de configuración */}
+                        <FaCog />
                     </button>
                 </div>
             </div>
