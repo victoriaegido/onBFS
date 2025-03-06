@@ -22,8 +22,6 @@ This project, developed with React and pnpm, is designed to practice key React c
         ```
         This will start the app at http;//localhost:3000/
 
- ## 3. Others commands
-        
 
 # Project Structure
 src
