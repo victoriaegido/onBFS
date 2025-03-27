@@ -85,8 +85,6 @@ const PostList: React.FC<PostListProps> = ({ onEdit }) => {
                             body={post.body}
                             onEdit={() => navigate(`/editar/${post.id}`)}
                             onDelete={(e) => handleDelete(post.id!, e)}
-                            editIcon={EditIcon}
-                            deleteIcon={TrashIcon}
                         />
                     ))
                 ) : (
