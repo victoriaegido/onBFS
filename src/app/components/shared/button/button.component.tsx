@@ -24,6 +24,7 @@ const GoButton: React.FC<GoButtonProps> = ({
             onClick={onClick}
         >
             {iconSrc}
+            {text}
         </button>
     );
 };
