@@ -1,5 +1,7 @@
 import React from "react";
 import GoButton from "../button/button.component";
+import { FontAwesomeIconsLibrary } from "@goaigua/goaigua-styles/icons/libraries/font-awesome/fontawesome-icons-library";
+import GoAiguaIcon from "@goaigua/goaigua-styles/icons/icon.component";
 import "./postCard.component.scss";
 
 interface PostCardProps {
@@ -7,8 +9,6 @@ interface PostCardProps {
     body: string;
     onEdit: () => void;
     onDelete: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-    editIcon?: string;
-    deleteIcon?: string;
 }
 
 const PostCard: React.FC<PostCardProps> = ({
@@ -16,8 +16,6 @@ const PostCard: React.FC<PostCardProps> = ({
     body,
     onEdit,
     onDelete,
-    editIcon,
-    deleteIcon,
 }) => {
     return (
         <div className="post-card">
@@ -28,13 +26,13 @@ const PostCard: React.FC<PostCardProps> = ({
                     text="Editar"
                     variant="submit"
                     onClick={onEdit}
-                    iconSrc={editIcon}
+                    iconSrc={<GoAiguaIcon icon={FontAwesomeIconsLibrary.PenToSquare} />}
                 />
                 <GoButton
                     text="Eliminar"
                     variant="cancel"
                     onClick={(e) => onDelete(e)}
-                    iconSrc={deleteIcon}
+                    iconSrc={<GoAiguaIcon icon={FontAwesomeIconsLibrary.Trash} />}
                 />
             </div>
         </div>

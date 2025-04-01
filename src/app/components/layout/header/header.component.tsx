@@ -1,6 +1,7 @@
 import React, { PropsWithChildren } from "react";
 import { Link } from "react-router-dom";
-import { FaCog, FaBars } from "react-icons/fa";
+import { FontAwesomeIconsLibrary } from "@goaigua/goaigua-styles/icons/libraries/font-awesome/fontawesome-icons-library";
+import GoAiguaIcon from "@goaigua/goaigua-styles/icons/icon.component";
 import "./header.component.scss";
 
 const Header: React.FC<PropsWithChildren> = ({ children }) => {
@@ -8,7 +9,7 @@ const Header: React.FC<PropsWithChildren> = ({ children }) => {
         <header className="header">
             <div className="header__hierarchy">
                 <button className="header__hierarchy__button">
-                    <FaBars />
+                    <GoAiguaIcon icon={FontAwesomeIconsLibrary.Bars}/>
                 </button>
                 <nav className="header__hierarchy__breadcrumbs">
                     <Link to="/" className="breadcrumb-link">
@@ -24,7 +25,7 @@ const Header: React.FC<PropsWithChildren> = ({ children }) => {
             <div className="header__menu">
                 <div className="header__menu__icon-buttons">
                     <button className="icon-button">
-                        <FaCog />
+                        <GoAiguaIcon icon={FontAwesomeIconsLibrary.Gear}/>
                     </button>
                 </div>
             </div>

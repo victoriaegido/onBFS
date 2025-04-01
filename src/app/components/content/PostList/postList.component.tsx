@@ -5,11 +5,8 @@ import { RootState, AppDispatch } from "../../../store/store";
 import { useNavigate } from "react-router-dom";
 import SearchBar from "../../shared/searchbar/searchbar.component";
 import PaginationButton from "../../shared/paging-button/pagingb.component";
-import TrashIcon from "../../../../../node_modules/@goaigua/goaigua-styles/icons/libraries/ux/formating/trash.svg";
-import EditIcon from "../../../../../node_modules/@goaigua/goaigua-styles/icons/libraries/ux/files/edit.svg";
-import SearchIcon from "../../../../../node_modules/@goaigua/goaigua-styles/icons/libraries/ux/navigation/search.svg";
-import LeftArrow from "../../../../../node_modules/@goaigua/goaigua-styles/icons/libraries/ux/navigation/chevron-left.svg";
-import RigthArrow from "../../../../../node_modules/@goaigua/goaigua-styles/icons/libraries/ux/navigation/chevron-right.svg";
+import { FontAwesomeIconsLibrary } from "@goaigua/goaigua-styles/icons/libraries/font-awesome/fontawesome-icons-library";
+import GoAiguaIcon from "@goaigua/goaigua-styles/icons/icon.component";
 import PostCard from "../../shared/postCard/postCard.component";
 import "./postlist.component.scss";
 
@@ -70,7 +67,7 @@ const PostList: React.FC<PostListProps> = ({ onEdit }) => {
             <SearchBar
                 searchTerm={searchTerm}
                 onSearchChange={(e) => setSearchTerm(e.target.value)}
-                iconSrc={SearchIcon}
+                iconSrc={<GoAiguaIcon icon={FontAwesomeIconsLibrary.MagnifyingGlass}/>}
             />
 
             {loading && <p>Cargando...</p>}
@@ -85,8 +82,6 @@ const PostList: React.FC<PostListProps> = ({ onEdit }) => {
                             body={post.body}
                             onEdit={() => navigate(`/editar/${post.id}`)}
                             onDelete={(e) => handleDelete(post.id!, e)}
-                            editIcon={EditIcon}
-                            deleteIcon={TrashIcon}
                         />
                     ))
                 ) : (
@@ -99,7 +94,7 @@ const PostList: React.FC<PostListProps> = ({ onEdit }) => {
                     onClick={() => paginate(currentPage - 1)}
                     disabled={currentPage === 1}
                 >
-                    <img src={LeftArrow} alt="Anterior" />
+                    <GoAiguaIcon icon={FontAwesomeIconsLibrary.CaretLeft} />
                 </PaginationButton>
                 {[...Array(Math.ceil(filteredPosts.length / postsPerPage))].map(
                     (_, index) => (
@@ -119,7 +114,7 @@ const PostList: React.FC<PostListProps> = ({ onEdit }) => {
                         Math.ceil(filteredPosts.length / postsPerPage)
                     }
                 >
-                    <img src={RigthArrow} alt="Anterior" />
+                    <GoAiguaIcon icon={FontAwesomeIconsLibrary.CaretRight} />
                 </PaginationButton>
             </div>
         </div>

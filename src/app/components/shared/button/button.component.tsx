@@ -8,7 +8,7 @@ interface GoButtonProps {
         | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
         | (() => void);
     className?: string;
-    iconSrc?: string;
+    iconSrc?: React.ReactElement;
 }
 
 const GoButton: React.FC<GoButtonProps> = ({
@@ -23,7 +23,7 @@ const GoButton: React.FC<GoButtonProps> = ({
             className={`go-button go-button--${variant} ${className}`}
             onClick={onClick}
         >
-            {iconSrc && <img src={iconSrc} className="go-button__icon" />}
+            {iconSrc}
             {text}
         </button>
     );

@@ -4,7 +4,7 @@ import "./searchBar.component.scss";
 interface SearchBarProps {
     searchTerm: string;
     onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    iconSrc?: string;
+    iconSrc?: React.ReactElement;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
@@ -19,11 +19,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 placeholder="Buscar por título"
                 value={searchTerm}
                 onChange={onSearchChange}
-                className="search-input"
+                className="search-container__input"
             />
-            {iconSrc && (
-                <img src={iconSrc} alt="Buscar" className="search-icon" />
-            )}
+            <button className="search-container__icon">
+                {iconSrc}
+            </button>
         </div>
     );
 };
