@@ -7,7 +7,7 @@ const HomePage: React.FC = () => {
         <div className="page-layout">
             <Breadcrumbs />
             <div className="home-page__content page__content">
-                <PostList onEdit={() => {}} />
+                <PostList />
             </div>
         </div>
     );

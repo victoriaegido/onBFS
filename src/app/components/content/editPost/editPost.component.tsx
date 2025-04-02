@@ -1,62 +1,48 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "@/app/store/store";
-import { updatePost } from "../../../store/slices/postSlice";
-import { fetchPosts } from "../../../store/slices/postSlice";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useGetPostQuery, useUpdatePostMutation } from "../../../store/slices/postSlice";
 import "./editPost.component.scss";
 import Form from "../../shared/form/form.component";
 
-const PostForm: React.FC = () => {
+const CreatePostForm: React.FC = () => {
     const { id } = useParams();
     const postId = Number(id);
     const navigate = useNavigate();
-    const dispatch = useDispatch<AppDispatch>();
-    const posts = useSelector((state: RootState) => state.posts.posts);
 
-    useEffect(() => {
-        if (posts.length === 0) {
-            console.log("No hay posts, cargando desde la API...");
-            dispatch(fetchPosts());
-        }
-    }, [dispatch, posts.length]);
+    const { data: postToEdit, isLoading, isError} = useGetPostQuery(postId);
+    const [updatePost] = useUpdatePostMutation();
 
-    const postToEdit = posts.find((post) => post.id === postId);
-    console.log("Post encontrado en Redux:", postToEdit);
-
-    useEffect(() => {
-        if (posts.length > 0 && !postToEdit) {
-            console.warn("Post no encontrado, redirigiendo...");
-            navigate("/");
-        }
-    }, [postToEdit, posts, navigate]);
-
-    const [title, setTitle] = useState(postToEdit?.title || "");
-    const [body, setBody] = useState(postToEdit?.body || "");
+    const [title, setTitle] = useState("");
+    const [body, setBody] = useState("");
 
     useEffect(() => {
         if (postToEdit) {
-            setTitle(postToEdit.title);
-            setBody(postToEdit.body);
+          setTitle(postToEdit.title);
+          setBody(postToEdit.body);
         }
-    }, [postToEdit]);
-
-    const handleUpdate = async (e: React.FormEvent) => {
+      }, [postToEdit]);
+    
+      useEffect(() => {
+        if (!isLoading && !postToEdit) {
+          navigate("/");
+        }
+      }, [isLoading, postToEdit, navigate]);
+    
+      const handleUpdate = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!postToEdit || postToEdit.id === undefined) {
-            console.error("Error: No se puede actualizar un post sin ID.");
-            return;
-        }
-
+        if (!postToEdit || !postToEdit.id) return;
+    
         try {
-            await dispatch(
-                updatePost({ id: postToEdit.id, post: { title, body } })
-            ).unwrap();
-            navigate("/");
+          await updatePost({ id: postToEdit.id, post: { ...postToEdit, title, body } }).unwrap();
+          navigate("/");
         } catch (error) {
-            console.error("Error actualizando el post:", error);
+          console.error("Error actualizando el post:", error);
         }
-    };
+      };
+    
+      if (isLoading) return <p>Cargando post...</p>;
+      if (isError) return <p>Error al cargar el post.</p>;
+    
 
     return (
         <Form
@@ -71,4 +57,4 @@ const PostForm: React.FC = () => {
     );
 };
 
-export default PostForm;
+export default CreatePostForm;
