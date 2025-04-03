@@ -4,57 +4,54 @@ import { useGetPostQuery, useUpdatePostMutation } from "../../../store/slices/po
 import "./editPost.component.scss";
 import Form from "../../shared/form/form.component";
 
-const CreatePostForm: React.FC = () => {
-    const { id } = useParams();
-    const postId = Number(id);
-    const navigate = useNavigate();
+const EditPostForm: React.FC = () => {
+  const { id } = useParams();
+  const postId = Number(id);
+  const navigate = useNavigate();
 
-    const { data: postToEdit, isLoading, isError} = useGetPostQuery(postId);
-    const [updatePost] = useUpdatePostMutation();
+  const { data: postToEdit, isLoading, isError } = useGetPostQuery(postId);
+  const [updatePost] = useUpdatePostMutation();
 
-    const [title, setTitle] = useState("");
-    const [body, setBody] = useState("");
+  const [post, setPost] = useState({ userId: 0, title: "", body: "" });
 
-    useEffect(() => {
-        if (postToEdit) {
-          setTitle(postToEdit.title);
-          setBody(postToEdit.body);
-        }
-      }, [postToEdit]);
-    
-      useEffect(() => {
-        if (!isLoading && !postToEdit) {
-          navigate("/");
-        }
-      }, [isLoading, postToEdit, navigate]);
-    
-      const handleUpdate = async (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!postToEdit || !postToEdit.id) return;
-    
-        try {
-          await updatePost({ id: postToEdit.id, post: { ...postToEdit, title, body } }).unwrap();
-          navigate("/");
-        } catch (error) {
-          console.error("Error actualizando el post:", error);
-        }
-      };
-    
-      if (isLoading) return <p>Cargando post...</p>;
-      if (isError) return <p>Error al cargar el post.</p>;
-    
+  useEffect(() => {
+    if (postToEdit) {
+      setPost({ userId: postToEdit.userId, title: postToEdit.title, body: postToEdit.body });
+    }
+  }, [postToEdit]);
 
-    return (
-        <Form
-            title={title}
-            body={body}
-            setTitle={setTitle}
-            setBody={setBody}
-            onSubmit={handleUpdate}
-            onCancel={() => navigate("/")}
-            formTitle="Editar Post"
-        />
-    );
+  useEffect(() => {
+    if (!isLoading && !postToEdit) {
+      navigate("/");
+    }
+  }, [isLoading, postToEdit, navigate]);
+
+  const handleUpdate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!postToEdit || !postToEdit.id) return;
+
+    try {
+      await updatePost({ id: postToEdit.id, post: {userId: postToEdit.userId, title: postToEdit.title, body: postToEdit.body } }).unwrap();
+      navigate("/");
+    } catch (error) {
+      console.error("Error actualizando el post:", error);
+    }
+  };
+
+  if (isLoading) return <p>Cargando post...</p>;
+  if (isError) return <p>Error al cargar el post.</p>;
+
+  return (
+    <Form
+      title={post.title}
+      body={post.body}
+      setTitle={(value) => setPost((prev) => ({ ...prev, title: value }))}
+      setBody={(value) => setPost((prev) => ({ ...prev, body: value }))}
+      onSubmit={handleUpdate}
+      onCancel={() => navigate("/")}
+      formTitle="Editar Post"
+    />
+  );
 };
 
-export default CreatePostForm;
+export default EditPostForm;

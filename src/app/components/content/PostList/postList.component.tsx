@@ -36,7 +36,6 @@ const PostList: React.FC = () => {
 
     const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
 
-    console.log(currentPosts);
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
     const handleDelete = async (id: number, e: React.MouseEvent) => {
