@@ -43,10 +43,10 @@ const EditPostForm: React.FC = () => {
 
   return (
     <Form
-      title={post.title}
-      body={post.body}
-      setTitle={(value) => setPost((prev) => ({ ...prev, title: value }))}
-      setBody={(value) => setPost((prev) => ({ ...prev, body: value }))}
+      post={post}
+      setPost={(key, value) =>
+        setPost((post) => ({ ...post, [key]: value }))
+      }
       onSubmit={handleUpdate}
       onCancel={() => navigate("/")}
       formTitle="Editar Post"
