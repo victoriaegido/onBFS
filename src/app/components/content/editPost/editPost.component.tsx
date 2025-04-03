@@ -31,7 +31,7 @@ const EditPostForm: React.FC = () => {
     if (!postToEdit || !postToEdit.id) return;
 
     try {
-      await updatePost({ id: postToEdit.id, post: {userId: postToEdit.userId, title: postToEdit.title, body: postToEdit.body } }).unwrap();
+      await updatePost({ id: postToEdit.id, post }).unwrap();
       navigate("/");
     } catch (error) {
       console.error("Error actualizando el post:", error);
