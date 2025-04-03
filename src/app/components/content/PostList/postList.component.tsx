@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchPosts, deletePost } from "../../../store/slices/postSlice";
-import { RootState, AppDispatch } from "../../../store/store";
+import React, { useState } from "react";
+import { useDeletePostMutation, useGetPostsQuery } from "../../../store/slices/postSlice";
 import { useNavigate } from "react-router-dom";
 import SearchBar from "../../shared/searchbar/searchbar.component";
 import PaginationButton from "../../shared/paging-button/pagingb.component";
@@ -12,32 +10,22 @@ import "./postlist.component.scss";
 
 interface Post {
     id: number;
+    userId: number;
     title: string;
     body: string;
 }
 
-interface PostListProps {
-    onEdit: (post: Post) => void;
-}
 
-const PostList: React.FC<PostListProps> = ({ onEdit }) => {
-    const dispatch = useDispatch<AppDispatch>();
+const PostList: React.FC = () => {
     const navigate = useNavigate();
-    const { posts, loading, error } = useSelector(
-        (state: RootState) => state.posts
-    );
+    const { data: posts = [], isLoading, error} = useGetPostsQuery();
+    const [deletePost] = useDeletePostMutation();
     const [searchTerm, setSearchTerm] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const postsPerPage = 8;
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
-
-    useEffect(() => {
-        if (posts.length === 0) {
-            dispatch(fetchPosts());
-        }
-    }, [dispatch, posts.length]);
 
     const filteredPosts = posts.filter((post) =>
         post.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -49,16 +37,15 @@ const PostList: React.FC<PostListProps> = ({ onEdit }) => {
 
     const handleDelete = async (id: number, e: React.MouseEvent) => {
         e.stopPropagation();
-
         if (window.confirm("¿Seguro que quieres eliminar este post?")) {
-            try {
-                await dispatch(deletePost(id)).unwrap();
-                console.log(`Post con ID ${id} eliminado.`);
-            } catch (error) {
-                console.error("Error al eliminar el post:", error);
-            }
+          try {
+            await deletePost(id).unwrap();
+            console.log(`Post con ID ${id} eliminado.`);
+          } catch (error) {
+            console.error("Error al eliminar el post:", error);
+          }
         }
-    };
+      };
 
     return (
         <div className="post-list-container">
@@ -70,8 +57,8 @@ const PostList: React.FC<PostListProps> = ({ onEdit }) => {
                 iconSrc={<GoAiguaIcon icon={FontAwesomeIconsLibrary.MagnifyingGlass}/>}
             />
 
-            {loading && <p>Cargando...</p>}
-            {error && <p>{error}</p>}
+            {isLoading && <p>Cargando...</p>}
+            {error && <p>{JSON.stringify(error)}</p>}
 
             <div className="post-list">
                 {currentPosts.length > 0 ? (
