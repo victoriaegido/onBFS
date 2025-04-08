@@ -26,9 +26,8 @@ const LoginForm = () => {
   
         if (users && users.length > 0) {
           const userMatch = users.find((user) => user.name === name);
-          console.log(userMatch);
   
-          if (userMatch && userMatch.id !== undefined) {
+          if (userMatch?.id) {
             localStorage.setItem(
               "user",
               JSON.stringify({ id: userMatch.id, name: userMatch.name })

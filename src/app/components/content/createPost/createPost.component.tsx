@@ -4,16 +4,27 @@ import { useCreatePostMutation, useGetPostQuery } from "../../../store/slices/po
 import Form from "../../shared/form/form.component";
 import "./createPost.component.scss";
 
+interface Post {
+  userId: number;
+  title: string;
+  body: string;
+}
 interface CreatePostFormProps {
   onClose: () => void;
   onPostCreated: () => void;
 }
 
+const initialPostState: Post = {
+  userId: 0,
+  title: "",
+  body: "",
+};
+
 const CreatePostForm: React.FC<CreatePostFormProps> = ({
   onPostCreated,
 }) => {
   const navigate = useNavigate();
-  const [post, setPost] = useState({ userId: 0, title: "", body: "" });
+  const [post, setPost] = useState(initialPostState);
   const [createPost] = useCreatePostMutation();
 
   const handleSubmit = async (e: React.FormEvent) => {
