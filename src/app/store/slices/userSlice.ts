@@ -62,21 +62,15 @@ export const userApi = createApi({
             }),
             invalidatesTags: ['User'],
         }),
-        login: builder.mutation({
-            query: () => ({
-                url: 'login',
+        login: builder.mutation<string, { name: string; password: string }>({
+            query: ({ name, password }) => ({
+                url: `/login?name=${encodeURIComponent(name)}&password=${encodeURIComponent(password)}`,
                 method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded',},
+                responseHandler: response => response.text(),
             }),
-            invalidatesTags: (result, error, user) => {
-                if (error) {
-                    return ['User'];
-                }
-                if(result) {
-                    return [{ type: 'User', id: user}]
-                }
-                return [];
-            }
-        })
+            invalidatesTags: ['User'],
+          }),          
     }),
 });
 

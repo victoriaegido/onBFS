@@ -24,6 +24,10 @@ const PostList: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const postsPerPage = 8;
 
+    const user= JSON.parse(localStorage.getItem("user") || "{}");
+    const currentUserId = user?.id;
+
+
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
@@ -68,7 +72,8 @@ const PostList: React.FC = () => {
                             title={post.title}
                             body={post.body}
                             onEdit={() => navigate(`/editar/${post.id}`)}
-                            onDelete={(e) => handleDelete(post.id!, e)}
+                            {...(post.userId === currentUserId && { onDelete: (e: React.MouseEvent) => handleDelete(post.id!, e) })}
+                              
                         />
                     ))
                 ) : (
