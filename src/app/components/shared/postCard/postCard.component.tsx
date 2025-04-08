@@ -8,7 +8,7 @@ interface PostCardProps {
     title: string;
     body: string;
     onEdit: () => void;
-    onDelete: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    onDelete?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 const PostCard: React.FC<PostCardProps> = ({
@@ -28,12 +28,14 @@ const PostCard: React.FC<PostCardProps> = ({
                     onClick={onEdit}
                     iconSrc={<GoAiguaIcon icon={FontAwesomeIconsLibrary.PenToSquare} />}
                 />
+                {onDelete && (
                 <GoButton
                     text="Eliminar"
                     variant="cancel"
                     onClick={(e) => onDelete(e)}
                     iconSrc={<GoAiguaIcon icon={FontAwesomeIconsLibrary.Trash} />}
                 />
+                )}
             </div>
         </div>
     );

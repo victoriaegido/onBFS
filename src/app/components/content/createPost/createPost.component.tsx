@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCreatePostMutation, useGetPostQuery } from "../../../store/slices/postSlice"; // Asegúrate de que la ruta sea la correcta
+import { useCreatePostMutation, useGetPostQuery } from "../../../store/slices/postSlice"; 
 import Form from "../../shared/form/form.component";
 import "./createPost.component.scss";
 
@@ -13,24 +13,28 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
   onPostCreated,
 }) => {
   const navigate = useNavigate();
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+  const [post, setPost] = useState({ userId: 0, title: "", body: "" });
   const [createPost] = useCreatePostMutation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title || !body) return;
+    if (!post.title || !post.body) return;
 
     try {
+      const userData = localStorage.getItem("user");
+      const user = userData ? JSON.parse(userData) : null;
+      const userId = user?.id ?? 0;
+
       const newPost = await createPost({
-        userId: 1,
-        title,
-        body,
+        userId,
+        title: post.title,
+        body: post.body,
       }).unwrap();
 
       console.log("Post creado:", newPost);
       onPostCreated();
-      navigate("/"), { state : { refetch: true}};
+
+      navigate("/", { state: { refetch: true } });
     } catch (error) {
       console.error("Error al crear el post:", error);
     }
@@ -38,10 +42,10 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
 
   return (
     <Form
-      title={title}
-      body={body}
-      setTitle={setTitle}
-      setBody={setBody}
+      post={post}
+      setPost={(key, value) =>
+        setPost((post) => ({ ...post, [key]: value }))
+      }
       onSubmit={handleSubmit}
       onCancel={() => navigate("/")}
       formTitle="Crear Nuevo Post"

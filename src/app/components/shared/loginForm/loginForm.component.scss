@@ -1,0 +1,36 @@
+.go-button-container {
+    display: flex;
+    justify-content: center; 
+  }
+
+  .register-link {
+    font-size: 0.9rem;
+    color: #fff;
+    margin-top: 15px;
+    text-align: center;
+  
+    a {
+      color: #61dafb;
+      text-decoration: none;
+      font-weight: bold;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+.password-input-container {
+    position: relative;
+}
+  
+.password-toggle-btn {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+  
