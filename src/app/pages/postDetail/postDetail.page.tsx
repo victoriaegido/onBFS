@@ -117,7 +117,6 @@ const PostDetail = () => {
             </div>
           )}
 
-          {/* Botón eliminar todos (solo propietario del post) */}
           {isOwner && comments && comments.length > 0 && (
             <button onClick={handleDeleteAllComments} className="delete-all-button">
               Eliminar todos los comentarios
