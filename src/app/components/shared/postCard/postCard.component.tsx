@@ -7,36 +7,62 @@ import "./postCard.component.scss";
 interface PostCardProps {
     title: string;
     body: string;
-    onEdit: () => void;
+    onView?: () => void;
+    onEdit?: () => void;
     onDelete?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    showActions?: boolean;
 }
 
 const PostCard: React.FC<PostCardProps> = ({
     title,
     body,
+    onView,
     onEdit,
     onDelete,
+    showActions = true,
 }) => {
     return (
-        <div className="post-card">
+        <div className="post-card" onClick={onView}>
             <h3>{title}</h3>
             <p>{body}</p>
-            <div className="post-card-buttons">
-                <GoButton
-                    text="Editar"
-                    variant="submit"
-                    onClick={onEdit}
-                    iconSrc={<GoAiguaIcon icon={FontAwesomeIconsLibrary.PenToSquare} />}
-                />
-                {onDelete && (
-                <GoButton
-                    text="Eliminar"
-                    variant="cancel"
-                    onClick={(e) => onDelete(e)}
-                    iconSrc={<GoAiguaIcon icon={FontAwesomeIconsLibrary.Trash} />}
-                />
-                )}
-            </div>
+            
+            {showActions && (
+                <div className="post-card-buttons">
+                    {onView && (
+                        <GoButton
+                            text="Ver"
+                            variant="view"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onView();
+                            }}
+                            iconSrc={<GoAiguaIcon icon={FontAwesomeIconsLibrary.Eye} />}
+                        />
+                    )}
+                    {onEdit && (
+                        <GoButton
+                            text="Editar"
+                            variant="submit"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onEdit();
+                            }}
+                            iconSrc={<GoAiguaIcon icon={FontAwesomeIconsLibrary.PenToSquare} />}
+                        />
+                    )}
+                    {onDelete && (
+                        <GoButton
+                            text="Eliminar"
+                            variant="cancel"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onDelete(e);
+                            }}
+                            iconSrc={<GoAiguaIcon icon={FontAwesomeIconsLibrary.Trash} />}
+                        />
+                    )}
+                </div>
+            )}
         </div>
     );
 };
