@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useCreatePostMutation, useGetPostQuery } from "../../../store/slices/postSlice"; 
 import Form from "../../shared/form/form.component";
 import "./createPost.component.scss";
+import { useTranslation } from "react-i18next";
 
 interface Post {
   userId: number;
@@ -26,6 +27,7 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
   const navigate = useNavigate();
   const [post, setPost] = useState(initialPostState);
   const [createPost] = useCreatePostMutation();
+  const { t } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,7 +61,7 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
       }
       onSubmit={handleSubmit}
       onCancel={() => navigate("/")}
-      formTitle="Crear Nuevo Post"
+      formTitle={t("APP.CP.TITLE")}
     />
   );
 };

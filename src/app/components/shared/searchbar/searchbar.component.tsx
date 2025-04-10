@@ -1,5 +1,6 @@
 import React from "react";
 import "./searchBar.component.scss";
+import { useTranslation } from "react-i18next";
 
 interface SearchBarProps {
     searchTerm: string;
@@ -12,11 +13,14 @@ const SearchBar: React.FC<SearchBarProps> = ({
     onSearchChange,
     iconSrc,
 }) => {
+
+    const { t } = useTranslation();
+
     return (
         <div className="search-container">
             <input
                 type="text"
-                placeholder="Buscar por título"
+                placeholder={t("APP.HOME.SB")}
                 value={searchTerm}
                 onChange={onSearchChange}
                 className="search-container__input"

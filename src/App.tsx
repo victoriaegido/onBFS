@@ -5,6 +5,7 @@ import "./styles/styles.scss";
 import "./index.css";
 import AppRoutes from "./app/routes/app-routes";
 
+
 const App: React.FC = () => {
     return (
         <Router>

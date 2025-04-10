@@ -3,6 +3,7 @@ import GoButton from "../button/button.component";
 import { FontAwesomeIconsLibrary } from "@goaigua/goaigua-styles/icons/libraries/font-awesome/fontawesome-icons-library";
 import GoAiguaIcon from "@goaigua/goaigua-styles/icons/icon.component";
 import "./postCard.component.scss";
+import { useTranslation } from "react-i18next";
 
 interface PostCardProps {
     title: string;
@@ -21,6 +22,9 @@ const PostCard: React.FC<PostCardProps> = ({
     onDelete,
     showActions = true,
 }) => {
+    
+    const { t } = useTranslation();
+
     return (
         <div className="post-card" onClick={onView}>
             <h3>{title}</h3>
@@ -30,7 +34,7 @@ const PostCard: React.FC<PostCardProps> = ({
                 <div className="post-card-buttons">
                     {onView && (
                         <GoButton
-                            text="Ver"
+                            text={t("APP.HOME.VIEW")}
                             variant="view"
                             onClick={(e) => {
                                 e.stopPropagation();
@@ -41,7 +45,7 @@ const PostCard: React.FC<PostCardProps> = ({
                     )}
                     {onEdit && (
                         <GoButton
-                            text="Editar"
+                            text={t("APP.HOME.EDIT")}
                             variant="submit"
                             onClick={(e) => {
                                 e.stopPropagation();
@@ -52,7 +56,7 @@ const PostCard: React.FC<PostCardProps> = ({
                     )}
                     {onDelete && (
                         <GoButton
-                            text="Eliminar"
+                            text={t("APP.HOME.DELETE")}
                             variant="cancel"
                             onClick={(e) => {
                                 e.stopPropagation();

@@ -7,6 +7,7 @@ import { FontAwesomeIconsLibrary } from "@goaigua/goaigua-styles/icons/libraries
 import GoAiguaIcon from "@goaigua/goaigua-styles/icons/icon.component";
 import PostCard from "../../shared/postCard/postCard.component";
 import "./postlist.component.scss";
+import { useTranslation } from "react-i18next";
 
 interface Post {
     id: number;
@@ -31,6 +32,8 @@ const PostList: React.FC = () => {
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
+    const { t } = useTranslation();
+
     const filteredPosts = posts.filter((post) =>
         post.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -53,7 +56,7 @@ const PostList: React.FC = () => {
 
     return (
         <div className="post-list-container">
-            <h1>Lista de Posts</h1>
+            <h1>{t("APP.HOME.TITLE")}</h1>
 
             <SearchBar
                 searchTerm={searchTerm}
@@ -61,7 +64,7 @@ const PostList: React.FC = () => {
                 iconSrc={<GoAiguaIcon icon={FontAwesomeIconsLibrary.MagnifyingGlass}/>}
             />
 
-            {isLoading && <p>Cargando...</p>}
+            {isLoading && <p>{t("APP.HOME.LOADING")}</p>}
             {error && <p>{JSON.stringify(error)}</p>}
 
             <div className="post-list">
@@ -80,7 +83,7 @@ const PostList: React.FC = () => {
                         </div>
                     ))
                 ) : (
-                    <p>No se encontraron posts</p>
+                    <p>{t("APP.HOME.MSG")}</p>
                 )}
             </div>
 

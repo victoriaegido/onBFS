@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import GoButton from "../button/button.component";
 import "./form.component.scss";
+import { useTranslation } from "react-i18next";
 
 interface FormProps {
     post: {
@@ -14,6 +15,7 @@ interface FormProps {
     formTitle: string;
 }
 
+
 const Form: React.FC<FormProps> = ({
     post,
     setPost,
@@ -21,12 +23,13 @@ const Form: React.FC<FormProps> = ({
     onCancel,
     formTitle,
 }) => {
+    const { t } = useTranslation();
     return (
         <div className="post-form">
             <div className="post-form__content">
                 <h2 className="post-form__title">{formTitle}</h2>
                 <form className="post-form__form" onSubmit={onSubmit}>
-                    <label className="post-form__label">Título:</label>
+                    <label className="post-form__label">{t("APP.CP.T")}</label>
                     <input
                         type="text"
                         className="post-form__input"
@@ -35,7 +38,7 @@ const Form: React.FC<FormProps> = ({
                         required
                     />
 
-                    <label className="post-form__label">Contenido:</label>
+                    <label className="post-form__label">{t("APP.CP.C")}</label>
                     <textarea
                         className="post-form__textarea"
                         value={post.body}
@@ -44,9 +47,9 @@ const Form: React.FC<FormProps> = ({
                     ></textarea>
 
                     <div className="post-form__buttons">
-                        <GoButton text="Guardar" variant="submit" />
+                        <GoButton text={t("APP.GB.SAVE")} variant="submit" />
                         <GoButton
-                            text="Cancelar"
+                            text={t("APP.GB.CANCEL")}
                             variant="cancel"
                             onClick={onCancel}
                         />

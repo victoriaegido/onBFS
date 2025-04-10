@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import "./../form/form.component.scss";
 import "./resgisterForm.component.scss";
+import { useTranslation } from "react-i18next";
 
 
 const RegisterForm: React.FC = () => {
@@ -17,6 +18,7 @@ const RegisterForm: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const { data: users = []} = useGetUsersQuery();
   const [createUser, { isLoading }] = useCreateUserMutation();
@@ -69,10 +71,10 @@ const RegisterForm: React.FC = () => {
   return (
     <div className="post-form">
       <div className="post-form__content">
-        <h2 className="post-form__title">Registrar Usuario</h2>
+        <h2 className="post-form__title">{t("APP.REGISTER.TITLE")}</h2>
         <form className="post-form__form" onSubmit={handleRegister}>
           <div className="post-form__input-container">
-            <label className="post-form__label">Nombre</label>
+            <label className="post-form__label">{t("APP.REGISTER.NAME")}</label>
             <input
               type="text"
               value={name}
@@ -83,7 +85,7 @@ const RegisterForm: React.FC = () => {
           </div>
 
           <div className="post-form__input-container">
-            <label className="post-form__label">Contraseña</label>
+            <label className="post-form__label">{t("APP.REGISTER.PSW")}</label>
             <div className="password-input-container">
               <input
                 type={showPassword ? "text" : "password"}
@@ -99,7 +101,7 @@ const RegisterForm: React.FC = () => {
           </div>
 
           <div className="post-form__input-container">
-            <label className="post-form__label">Repetir Contraseña</label>
+            <label className="post-form__label">{t("APP.REGISTER.REPPSW")}</label>
             <div className="password-input-container">
               <input
                 type={showConfirmPassword ? "text" : "password"} 
@@ -117,12 +119,12 @@ const RegisterForm: React.FC = () => {
           {<p className="error">{formError || usenameError}</p>}
 
           <div className="go-button-container">
-            <GoButton text={isLoading ? "Cargando..." : "Registrar"} variant="submit" disabled={isLoading} />
+            <GoButton text={t("APP.REGISTER.REG")} variant="submit" />
           </div>
 
           <p className="register-link">
-            ¿Ya tienes cuenta?{" "}
-            <Link to="/login">Inicia sesión aquí</Link>
+            {t("APP.REGISTER.MSG")}{" "}
+            <Link to="/login">{t("APP.REGISTER.MSGR")}</Link>
           </p>
         </form>
       </div>

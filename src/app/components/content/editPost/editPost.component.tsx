@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useGetPostQuery, useUpdatePostMutation } from "../../../store/slices/postSlice";
 import "./editPost.component.scss";
 import Form from "../../shared/form/form.component";
+import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 const EditPostForm: React.FC = () => {
   const { id } = useParams();
@@ -13,6 +15,8 @@ const EditPostForm: React.FC = () => {
   const [updatePost] = useUpdatePostMutation();
 
   const [post, setPost] = useState({ userId: 0, title: "", body: "" });
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (postToEdit) {
@@ -49,7 +53,7 @@ const EditPostForm: React.FC = () => {
       }
       onSubmit={handleUpdate}
       onCancel={() => navigate("/")}
-      formTitle="Editar Post"
+      formTitle={t("APP.EDIT.TITLE")}
     />
   );
 };
