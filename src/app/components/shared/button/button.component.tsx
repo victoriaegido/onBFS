@@ -3,7 +3,7 @@ import "./button.component.scss";
 
 interface GoButtonProps {
     text?: string;
-    variant?: "submit" | "cancel";
+    variant?: "submit" | "cancel" | "view";
     onClick?:
         | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
         | (() => void);

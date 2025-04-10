@@ -67,14 +67,17 @@ const PostList: React.FC = () => {
             <div className="post-list">
                 {currentPosts.length > 0 ? (
                     currentPosts.map((post) => (
-                        <PostCard
-                            key={post.id ?? Math.random()}
-                            title={post.title}
-                            body={post.body}
-                            onEdit={() => navigate(`/editar/${post.id}`)}
-                            {...(post.userId === currentUserId && { onDelete: (e: React.MouseEvent) => handleDelete(post.id!, e) })}
-                              
-                        />
+                        <div key={post.id}>
+                            <PostCard
+                                title={post.title}
+                                body={post.body}
+                                onView={() => navigate(`/comentario/${post.id}`)}
+                                onEdit={() => navigate(`/editar/${post.id}`)}
+                                {...(post.userId === currentUserId && {
+                                    onDelete: (e: React.MouseEvent) => handleDelete(post.id!, e),
+                                })}
+                            />
+                        </div>
                     ))
                 ) : (
                     <p>No se encontraron posts</p>

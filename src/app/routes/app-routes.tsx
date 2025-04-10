@@ -4,6 +4,7 @@ import GoLoader from "../../app/components/shared/loader/loader.component";
 import LoginForm from "../components/shared/loginForm/loginForm.component";
 import ProtectedRoute from "./protectedRoute/protectedRoute";
 import RegisterForm from "../components/shared/registerForm/registerForm.component";
+import PostDetail from "../pages/postDetail/postDetail.page";
 
 const HomePage = lazy(() => import("../../app/pages/postHome.page"));
 const EditPostPage = lazy(
@@ -22,7 +23,7 @@ export const AppRoutes = () => {
                 <Route path="/" element={<ProtectedRoute> <HomePage /> </ProtectedRoute>} />
                 <Route path="/crear" element={<ProtectedRoute> <CreatePostPage /> </ProtectedRoute>} />
                 <Route path="/editar/:id" element={<ProtectedRoute> <EditPostPage /> </ProtectedRoute> } />
-                
+                <Route path="/comentario/:id" element={<ProtectedRoute> <PostDetail/></ProtectedRoute>}/>
             </Routes>
         </Suspense>
     );

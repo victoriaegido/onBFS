@@ -1,0 +1,126 @@
+.post-detail-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100vh;
+    padding: 20px;
+  }
+  
+  .post-detail {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    height: calc(100% - 60px); /* Ajuste para el breadcrumb */
+  }
+  
+  .post-detail-left {
+    width: 25%;
+    background-color: #242424;
+    padding: 20px;
+    border-radius: 8px;
+    height: 100%;
+    box-sizing: border-box;
+    margin-top: 20px;
+  }
+  
+  .post-detail-right {
+    width: 75%;
+    background-color: #343434;
+    padding: 20px;
+    border-radius: 8px;
+    height: 100%;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+  
+  .comment-form {
+    margin-bottom: 20px;
+  }
+  
+  .comment-textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 10px;
+    border: 1px solid #494848;
+    border-radius: 4px;
+    resize: vertical;
+    margin-bottom: 10px;
+  }
+  
+  .comment-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .comment-button:hover {
+    background-color: #45a049;
+  }
+  
+  .comment-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .comments-list {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+  }
+  
+  .login-message {
+    color: #666;
+    font-style: italic;
+    padding: 10px 0;
+    margin-bottom: 15px;
+  }
+  
+  .no-comments {
+    font-size: 16px;
+    color: gray;
+    font-style: italic;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  .comment-with-action {
+    position: relative;
+    margin-bottom: 15px;
+  }
+  
+  .delete-comment-button {
+    margin-top: 5px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+  }
+  
+  .delete-comment-button:hover {
+    background-color: #d11a2a;
+  }
+  
+  .delete-all-button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    cursor: pointer;
+  }
+  
+  .delete-all-button:hover {
+    background-color: #c9302c;
+  }
+  
