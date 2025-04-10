@@ -34,7 +34,11 @@
     "APP.DET.MSG": "There aren't comments for this post",
     "APP.LOGOUT": "Log out",
     "APP.HOME": "Home",
-    "APP.CREATE": "Create"
+    "APP.CREATE": "create",
+    "APP.COMMENT": "comment",
+    "APP.EDIT": "edit"
+
+
 
 
 

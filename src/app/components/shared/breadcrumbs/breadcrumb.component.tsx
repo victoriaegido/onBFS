@@ -8,6 +8,19 @@ const Breadcrumbs: React.FC = () => {
     const paths = location.pathname.split("/").filter((path) => path);
     const { t } = useTranslation();
 
+    const getTranslatedPath = (path: string) => {
+        switch (path) {
+          case 'comentario':
+            return t('APP.COMMENT');
+          case 'crear':
+            return t('APP.CREATE');
+          case 'editar':
+            return t('APP.EDIT');
+          default:
+            return path.charAt(0).toUpperCase() + path.slice(1);
+        }
+      };
+
     return (
         <nav className="breadcrumbs">
             <Link to="/">{t("APP.HOME")}</Link>
@@ -16,7 +29,7 @@ const Breadcrumbs: React.FC = () => {
                 return (
                     <span key={index} className="breadcrumbs-separator">
                         {"/ "}
-                        <Link to={url}>{path}</Link>
+                        <Link to={url}>{getTranslatedPath(path)}</Link>
                     </span>
                 );
             })}

@@ -34,7 +34,10 @@
     "APP.DET.MSG": "No hay comentarios para este post",
     "APP.LOGOUT": "Cerrar sesión",
     "APP.HOME": "Inicio",
-    "APP.CREATE": "Crear"
+    "APP.CREATE": "crear",
+    "APP.COMMENT": "comentario",
+    "APP.EDIT": "editar"
+
 
 
 }
