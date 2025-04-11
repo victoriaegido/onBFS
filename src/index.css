@@ -2,37 +2,10 @@ body {
     margin: 100;
     display: flex;
     flex-direction: column;
-    align-items:stretch;
     min-width: 320px;
     min-height: 100vh;
-    background-color: #242424;
-    color: white;
-}
-
-#root {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Se asegura de que la página tenga altura completa */
-}
-
-/* ======= Estilos de Elementos Generales ======= */
-a {
-    font-weight: 500;
-    color: #646cff;
-    text-decoration: inherit;
-}
-a:hover {
-    color: #535bf2;
-}
-
-body {
-    margin: 100;
-    display: flex;
-    flex-direction: column;
-    min-width: 320px;
-    min-height: 100vh;
-    background-color: #242424;
-    color: white;
+    background-color: var(--home-background-color);
+    color: var(--home-text-color);
 }
 
 /* ======= Tipografía ======= */
@@ -49,31 +22,17 @@ button {
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    background-color: #1a1a1a;
-    color: white;
+    background-color: var(--home-buttonbg-color);
+    color: var(--home-buttont-color);
     cursor: pointer;
     transition: border-color 0.25s;
 }
 button:hover {
-    border-color: #646cff;
+    border-color: #70dbff;
 }
 button:focus,
 button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
-}
-
-/* ======= Media Queries (Modo Claro) ======= */
-@media (prefers-color-scheme: light) {
-    :root {
-        color: #213547;
-        background-color: #ffffff;
-    }
-    a:hover {
-        color: #747bff;
-    }
-    button {
-        background-color: #f9f9f9;
-    }
 }
 
 /* ======= Reset CSS y DevExtreme Overwrite ======= */
@@ -94,44 +53,50 @@ div {
     font-family: "DXIcons", sans-serif !important;
 }
 
-/* ======= Importación de Fuente Font Awesome Pro ======= */
-@font-face {
-    font-family: "Font Awesome 6 Pro";
-    src: local("Font Awesome 6 Pro"),
-        url("@goaigua/goaigua-styles/icons/typography/fa-light-300.ttf")
-            format("truetype");
+
+/* ======== Cambio de tema  =========*/
+
+[data-theme="light"]  {
+    --home-background-color: #ffffff;
+    --home-text-color: #333;
+    --home-buttonbg-color: #dbd9d9;
+    --home-buttont-color: #333;
+    --postcard-color: #f8f8f8;
+    --postcard-text-color: #1ebaee;
+    --postcard-textsw-color: #868484;
+    --postcard-shadow: #868484;
+    --sb-input-color: #333;
+    --pb-bg-color: #aba4a4;
+    --pb-bgh-color: #979292;
+    --pg-bgd-color: #827e7e;
+    --form-bg-color: #f8f8f8;
+    --form-label-color: #313131;
+    --textarea-text-color: black;
+    --comment-bg-color: #eee;
+    --header-bg-color: #c7c7c7;
+    --breadcrumb-color: #000;
+
+
 }
 
-/* ======= Ajustes Generales ======= */
-body {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    text-align: left;
-}
+[data-theme="dark"] {
+    --home-background-color: #242424;
+    --home-text-color: #fff;
+    --home-buttonbg-color: #333;
+    --home-buttont-color: #fff;
+    --postcard-color: #242424;
+    --postcard-text-color: #3fc6d5;
+    --postcard-textsw-color: #a3a3a3;
+    --postcard-shadow: #ffffff1a;
+    --sb-input-color: #fff;
+    --pb-bg-color: #444;
+    --pb-bgh-color: #555;
+    --pg-bgd-color: #666;
+    --form-bg-color: #1e1e1e;
+    --form-label-color: #ddd;
+    --textarea-text-color: white;
+    --comment-bg-color: #3f3f3f;
+    --header-bg-color: #222;
+    --breadcrumb-color: #fff;
 
-svg.svg-library {
-    height: 1em;
-}
-
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-        monospace !important;
-}
-
-/* ======= Ajustes para el Root del Proyecto ======= */
-#root {
-    height: 100%;
-}
-
-#toasts {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 10;
-
-    width: fit-content;
-    height: 100vh;
-    overflow: auto;
-    padding: var(--spacing-03);
 }

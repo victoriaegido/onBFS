@@ -16,7 +16,7 @@
   
   .post-detail-left {
     width: 25%;
-    background-color: #242424;
+    background-color: var(--home-background-color);
     padding: 20px;
     border-radius: 8px;
     height: 100%;
@@ -26,7 +26,7 @@
   
   .post-detail-right {
     width: 75%;
-    background-color: #343434;
+    background-color: var(--home-background-color);
     padding: 20px;
     border-radius: 8px;
     height: 100%;
