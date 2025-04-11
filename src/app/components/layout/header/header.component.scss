@@ -4,8 +4,7 @@
     align-items: center;
     padding: 15px 20px;
     height: 80px;
-    background-color: #222;
-    color: white;
+    background-color: var(--header-bg-color);
     width: 100vw;
     flex-shrink: 0;
     position: fixed;
@@ -23,11 +22,11 @@
             border: none;
             font-size: 1.8rem;
             cursor: pointer;
-            color: white;
+            color: var(--home-text-colo);
             transition: color 0.3s ease;
 
             &:hover {
-                color: #61dafb;
+                color: var(--postcard-text-color);
             }
         }
 
@@ -37,18 +36,18 @@
             font-size: 1rem;
 
             .breadcrumb-link {
-                color: white;
+                color: var(--breadcrumb-color);
                 text-decoration: none;
                 margin: 0 8px;
                 transition: color 0.3s ease;
 
                 &:hover {
-                    color: #61dafb;
+                    color: var(--postcard-text-color);
                 }
             }
 
             .breadcrumb-separator {
-                color: gray;
+                color: var(--breadcrumb-color);
             }
         }
     }
@@ -73,7 +72,7 @@
         display: flex;
         align-items: center;
         gap: 15px;
-        position: relative; // ⬅️ necesario para el dropdown
+        position: relative;
 
         &__icon-buttons {
             display: flex;
@@ -86,14 +85,14 @@
             padding: 8px;
             border-radius: 50%;
             cursor: pointer;
-            color: white;
+            color: var(--home-text-color);
             font-size: 1.5rem;
             transition: background 0.3s ease, transform 0.2s ease;
 
             &:hover {
                 background: #ffffff1a;
                 transform: scale(1.1);
-                color: #61dafb;
+                color: var(--postcard-text-color);
             }
 
             &:active {
@@ -101,13 +100,13 @@
             }
         }
 
-        // 🔽 Menú de logout
+        
         .dropdown-menu {
             position: absolute;
             top: 120%;
             right: 0;
-            background: #333;
-            border: 1px solid #444;
+            background: var(--home-buttonbg-color);
+            border: 1px solid var(--pb-bg-color);
             border-radius: 6px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             z-index: 2000;
@@ -116,7 +115,7 @@
             .dropdown-item {
                 padding: 10px 15px;
                 background: transparent;
-                color: white;
+                color: var(--home-text-color);
                 border: none;
                 width: 100%;
                 text-align: left;
@@ -125,7 +124,7 @@
                 transition: background 0.2s ease;
 
                 &:hover {
-                    background: #555;
+                    background: var(--pb-bgh-color);
                 }
             }
         }
