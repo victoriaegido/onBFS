@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import "../form/form.component.scss";
 import "./loginForm.component.scss";
+import { useTranslation } from "react-i18next";
 
 const LoginForm = () => {
   const [name, setName] = useState("");
@@ -14,6 +15,7 @@ const LoginForm = () => {
   const { data: users = [] } = useGetUsersQuery();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,11 +57,11 @@ const LoginForm = () => {
   return (
     <div className="post-form">
       <div className="post-form__content">
-        <h2 className="post-form__title">Iniciar Sesión</h2>
+        <h2 className="post-form__title">{t("APP.LOGIN.TITLE")}</h2>
         <form className="post-form__form" onSubmit={handleLogin}>
           <label 
             className="post-form__label"
-            htmlFor="name">Usuario</label>
+            htmlFor="name">{t("APP.LOGIN.USER")}</label>
           <input
             type="text"
             className="post-form__input"
@@ -73,7 +75,7 @@ const LoginForm = () => {
 
           <label 
             className="post-form__label"
-            htmlFor="password">Contraseña</label>
+            htmlFor="password">{t("APP.LOGIN.PSW")}</label>
           <div className="password-input-container">
             <input
               type={showPassword ? "text" : "password"}
@@ -95,12 +97,12 @@ const LoginForm = () => {
           </div>
 
           <div className="go-button-container">
-            <GoButton text="Entrar" variant="submit" />
+            <GoButton text={t("APP.LOGIN.ENTER")} variant="submit" />
           </div>
 
           <p className="register-link">
-            ¿No tienes cuenta?{" "}
-            <Link to="/register">Regístrate aquí</Link>
+            {t("APP.LOGIN.MSG")}{" "}
+            <Link to="/register">{t("APP.LOGIN.MSGR")}</Link>
           </p>
         </form>
       </div>

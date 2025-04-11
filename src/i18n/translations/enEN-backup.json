@@ -1,0 +1,45 @@
+{
+    "APP.LOGIN.TITLE": "Log In",
+    "APP.LOGIN.USER": "Username",
+    "APP.LOGIN.PSW": "Password",
+    "APP.LOGIN.ENTER":"Enter",
+    "APP.LOGIN.MSG": "Don't have an account?",
+    "APP.LOGIN.MSGR": "Sign up here",
+    "APP.REGISTER.TITLE": "Sign up",
+    "APP.REGISTER.NAME": "Username",
+    "APP.REGISTER.PSW": "Password",
+    "APP.REGISTER.REPPSW": "Repeat password",
+    "APP.REGISTER.MSG": "Do you have an account?",
+    "APP.REGISTER.MSGR": "Log in here",
+    "APP.REGISTER.REG": "Register",
+    "APP.HOME.TITLE": "Posts list",
+    "APP.HOME.SB": "Search by title",
+    "APP.HOME.LOADING": "Loading...",
+    "APP.HOME.MSG": "No posts found",
+    "APP.HOME.VIEW": "View",
+    "APP.HOME.EDIT": "Edit",
+    "APP.HOME.DELETE": "Delete",
+    "APP.CP.TITLE" : "Create post",
+    "APP.CP.T": "Title",
+    "APP.CP.C": "Content",
+    "APP.EDIT.TITLE": "Edit post",
+    "APP.GB.SAVE": "Save",
+    "APP.GB.CANCEL": "Cancel",
+    "APP.DET.TITLE": "Comments",
+    "APP.DET.INPUT": "Write your comment...",
+    "APP.DET.COMMENT": "Comment",
+    "APP.DET.PUBLISH": "Sharing...",
+    "APP.DET.DELETE": "Delete",
+    "APP.DET.DELETALL": "Delete all comments",
+    "APP.DET.MSG": "There aren't comments for this post",
+    "APP.LOGOUT": "Log out",
+    "APP.HOME": "Home",
+    "APP.CREATE": "create",
+    "APP.COMMENT": "comment",
+    "APP.EDIT": "edit"
+
+
+
+
+
+}

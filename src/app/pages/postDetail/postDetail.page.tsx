@@ -7,6 +7,7 @@ import PostCard from "../../components/shared/postCard/postCard.component";
 import CommentCard from "../../components/shared/commentCard/commentCard.component";
 import Breadcrumbs from "../../components/shared/breadcrumbs/breadcrumb.component";
 import './postDetail.page.scss';
+import { useTranslation } from 'react-i18next';
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -25,6 +26,8 @@ const PostDetail = () => {
   const [createComment, { isLoading: isCreatingComment }] = useCreateCommentMutation();
 
   const isOwner = currentUserId === post?.userId;
+
+  const { t } = useTranslation();
 
 
   const getUserName = (userId: number) => {
@@ -90,14 +93,14 @@ const PostDetail = () => {
         </div>
         
         <div className="post-detail-right">
-          <h3>Comentarios</h3>
+          <h3>{t("APP.DET.TITLE")}</h3>
           
           {currentUserId && (
             <form onSubmit={handleSubmitComment} className="comment-form">
               <textarea
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
-                placeholder="Escribe tu comentario..."
+                placeholder={t("APP.DET.INPUT")}
                 className="comment-textarea"
                 required
               />
@@ -106,7 +109,7 @@ const PostDetail = () => {
                 className="comment-button"
                 disabled={isCreatingComment}
               >
-                {isCreatingComment ? 'Publicando...' : 'Comentar'}
+                {isCreatingComment ? t('APP.DET.PUBLISH') : t('APP.DET.COMMENT')}
               </button>
             </form>
           )}
@@ -119,7 +122,7 @@ const PostDetail = () => {
 
           {isOwner && comments && comments.length > 0 && (
             <button onClick={handleDeleteAllComments} className="delete-all-button">
-              Eliminar todos los comentarios
+              {t("APP.DET.DELETALL")}
             </button>
           )}
           
@@ -136,14 +139,14 @@ const PostDetail = () => {
                       className="delete-comment-button"
                       onClick={() => handleDeleteComment(comment.id!)}
                     >
-                      Eliminar
+                      {t("APP.DET.DELETE")}
                     </button>
                   )}
                 </div>
               ))
             ) : (
               <div className="no-comments">
-                No hay comentarios para este post
+                {t("APP.DET.MSG")}
               </div>
             )}
           </div>

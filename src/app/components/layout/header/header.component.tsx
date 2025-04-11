@@ -3,11 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIconsLibrary } from "@goaigua/goaigua-styles/icons/libraries/font-awesome/fontawesome-icons-library";
 import GoAiguaIcon from "@goaigua/goaigua-styles/icons/icon.component";
 import "./header.component.scss";
+import LanguageSwitcher from "../../shared/languageSwitcher/languageSwitcher.component";
+import { useTranslation } from "react-i18next";
 
 const Header: React.FC<React.PropsWithChildren> = ({ children }) => {
 
     const [menuOpen, setMenuOpen] = useState(false);
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const handleLogout = () => {
         localStorage.removeItem("user");
@@ -24,7 +27,7 @@ const Header: React.FC<React.PropsWithChildren> = ({ children }) => {
             <nav className="header__hierarchy__breadcrumbs">
               <Link to="/" className="breadcrumb-link">Posts</Link>
               <span className="breadcrumb-separator"> | </span>
-              <Link to="/crear" className="breadcrumb-link">Crear Post</Link>
+              <Link to="/crear" className="breadcrumb-link">{t("APP.CP.TITLE")}</Link>
             </nav>
           </div>
     
@@ -33,11 +36,13 @@ const Header: React.FC<React.PropsWithChildren> = ({ children }) => {
               <button className="icon-button" onClick={() => setMenuOpen(!menuOpen)}>
                 <GoAiguaIcon icon={FontAwesomeIconsLibrary.Gear} />
               </button>
+
+              <LanguageSwitcher/>
     
               {menuOpen && (
                 <div className="dropdown-menu">
                   <button className="dropdown-item" onClick={handleLogout}>
-                    Cerrar sesión
+                    {t("APP.LOGOUT")}
                   </button>
                 </div>
               )}
