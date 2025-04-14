@@ -1,9 +1,9 @@
 .post-card {
-    background-color: #222;
+    background-color: var(--postcard-color);
     padding: 20px;
     width: 250px;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px #ffffff1a;
+    box-shadow: 0px 4px 10px var(--postcard-shadow);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,8 +13,8 @@
     h3 {
         font-size: 18px;
         margin-bottom: 10px;
-        color: #1ebaee;
-        text-shadow: 1px 1px 8px #a3a3a3;
+        color: var(--postcard-text-color);
+        text-shadow: 1px 1px 8px var(--postcard-textsw-color);
     }
 
     p {

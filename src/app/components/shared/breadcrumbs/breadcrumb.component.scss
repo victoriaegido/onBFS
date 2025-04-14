@@ -9,20 +9,20 @@
     margin-bottom: 20px;
 
     a {
-        color: #61dafb !important;
+        color: var(--postcard-text-color) !important;
         text-decoration: none;
         transition: color 0.3s ease-in-out !important;
 
         &:hover {
-            color: #61dafb !important;
+            color: var(--postcard-text-color) !important;
         }
 
         &:visited {
-            color: #61dafb !important;
+            color: var(--postcard-text-color) !important;
         }
 
         &:active {
-            color: #61dafb !important;
+            color: var(--postcard-text-color) !important;
         }
     }
 
@@ -31,6 +31,6 @@
     }
 
     &-separator {
-        color: #61dafb;
+        color: var(--postcard-text-color);
     }
 }

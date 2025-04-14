@@ -5,8 +5,7 @@
     align-items: center;
     height: 100vh;
     width: 100vw;
-    background-color: #242424;
-    color: white;
+    background-color: var(--home-background-color);
 
     &__content {
         display: flex;
@@ -15,18 +14,18 @@
         justify-content: center;
         width: 100%;
         max-width: 600px;
-        background-color: #1e1e1e;
+        background-color: var(--form-bg-color);
         padding: 30px;
         border-radius: 12px;
-        box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+        box-shadow: 0px 4px 10px var(--postcard-shadow);
     }
 
     &__title {
         font-size: 24px;
         font-weight: bold;
         margin-bottom: 20px;
-        color: #ffffff;
-        text-shadow: 1px 1px 8px rgba(255, 255, 255, 0.3);
+        color: var(--home-text-color);
+        text-shadow: 1px 1px 8px var(--postcard-shadow);
     }
 
     &__form {
@@ -39,7 +38,7 @@
     &__label {
         font-size: 16px;
         font-weight: bold;
-        color: #ddd;
+        color: var(--form-label-color);
     }
 
     &__input,
@@ -47,9 +46,9 @@
         width: 100%;
         padding: 12px;
         border-radius: 8px;
-        border: 1px solid #444;
-        background-color: #333;
-        color: white;
+        border: 1px solid var(--pb-bg-color);
+        background-color: var(--home-buttonbg-color);
+        color: var(--textarea-text-color);
         font-size: 16px;
         font-family: "Poppins", sans-serif;
         transition: all 0.3s ease;
@@ -58,7 +57,7 @@
     &__input:focus,
     &__textarea:focus {
         outline: none;
-        border-color: #70dbff;
+        border-color: var(--postcard-text-color);
         box-shadow: 0 0 8px rgba(112, 219, 255, 0.6);
     }
 

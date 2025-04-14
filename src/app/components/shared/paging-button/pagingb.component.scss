@@ -1,5 +1,5 @@
 .pagination-btn {
-    background-color: #444;
+    background-color: var(--pb-bg-color);
     color: white;
     border: none;
     padding: 8px 12px;
@@ -12,16 +12,16 @@
     justify-content: center;
 
     &:hover {
-        background-color: #555;
+        background-color: var(--pb-bgh-color);
     }
 
     &.active {
-        background-color: #00c8ff;
+        background-color: var(--postcard-text-color);
         font-weight: bold;
     }
 
     &:disabled {
-        background-color: #666;
+        background-color: var(--pg-bgd-color);
         cursor: not-allowed;
     }
 }
