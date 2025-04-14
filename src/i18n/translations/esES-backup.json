@@ -36,8 +36,11 @@
     "APP.HOME": "Inicio",
     "APP.CREATE": "crear",
     "APP.COMMENT": "comentario",
-    "APP.EDIT": "editar"
-
+    "APP.EDIT": "editar",
+    "APP.GRAPH": "Gráficas",
+    "APP.GRAPH.TITLE": "Posts y Comentarios por usuario",
+    "APP.GRAPH.AMOUNT": "Cantidad",
+    "APP.GRAPH.UNIT": " Unidades"
 
 
 }

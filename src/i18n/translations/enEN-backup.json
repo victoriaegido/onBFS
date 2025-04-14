@@ -36,10 +36,9 @@
     "APP.HOME": "Home",
     "APP.CREATE": "create",
     "APP.COMMENT": "comment",
-    "APP.EDIT": "edit"
-
-
-
-
-
+    "APP.EDIT": "edit",
+    "APP.GRAPH": "Graphs",
+    "APP.GRAPH.TITLE": "Posts and Comments by user",
+    "APP.GRAPH.AMOUNT": "Amount",
+    "APP.GRAPH.UNIT": " Units"
 }
