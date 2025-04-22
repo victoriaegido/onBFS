@@ -11,7 +11,7 @@ const LanguageSwitcher = () => {
       };
     
       return (
-        <button onClick={toggleLanguage} className="lang-toggle-btn">
+        <button onClick={toggleLanguage} className="lang-toggle-btn" data-cy="switcher">
           {currentLanguage}
         </button>
       );

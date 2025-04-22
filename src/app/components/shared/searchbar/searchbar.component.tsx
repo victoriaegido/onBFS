@@ -24,6 +24,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 value={searchTerm}
                 onChange={onSearchChange}
                 className="search-container__input"
+                data-cy="searchBar"
             />
             <button className="search-container__icon">
                 {iconSrc}
