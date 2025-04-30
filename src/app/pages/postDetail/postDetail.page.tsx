@@ -103,10 +103,12 @@ const PostDetail = () => {
                 placeholder={t("APP.DET.INPUT")}
                 className="comment-textarea"
                 required
+                data-cy="commentInput"
               />
               <button 
                 type="submit" 
                 className="comment-button"
+                data-cy="publishCommentB"
                 disabled={isCreatingComment}
               >
                 {isCreatingComment ? t('APP.DET.PUBLISH') : t('APP.DET.COMMENT')}
@@ -129,7 +131,7 @@ const PostDetail = () => {
           <div className="comments-list">
             {comments && comments.length > 0 ? (
               comments.map((comment) => (
-                <div key={comment.id} className="comment-with-action">
+                <div key={comment.id} className="comment-with-action" data-cy="commentCard">
                   <CommentCard 
                     userName={getUserName(comment.userId)} 
                     body={comment.body}

@@ -61,6 +61,7 @@
     },
     "devDependencies": {
         "@svgr/rollup": "8.0.1",
+        "@types/cypress": "^1.1.6",
         "@types/node": "20.3.2",
         "@types/react": "18.2.14",
         "@types/react-dom": "18.2.6",
@@ -69,8 +70,9 @@
         "@vitejs/plugin-react": "4.0.1",
         "concurrently": "8.2.0",
         "cross-env": "7.0.3",
-        "cypress": "12.16.0",
+        "cypress": "^12.16.0",
         "cypress-image-diff-js": "1.23.0",
+        "cypress-real-events": "^1.14.0",
         "eslint": "8.43.0",
         "eslint-config-prettier": "8.8.0",
         "eslint-plugin-cypress": "3.5.0",

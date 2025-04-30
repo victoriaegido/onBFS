@@ -36,6 +36,7 @@ const Form: React.FC<FormProps> = ({
                         value={post.title}
                         onChange={(e) => setPost("title", e.target.value)}
                         required
+                        data-cy="title"
                     />
 
                     <label className="post-form__label">{t("APP.CP.C")}</label>
@@ -44,10 +45,11 @@ const Form: React.FC<FormProps> = ({
                         value={post.body}
                         onChange={(e) => setPost("body", e.target.value)}
                         required
+                        data-cy="body"
                     ></textarea>
 
                     <div className="post-form__buttons">
-                        <GoButton text={t("APP.GB.SAVE")} variant="submit" />
+                        <GoButton text={t("APP.GB.SAVE")} variant="submit" data-cy="saveButton"/>
                         <GoButton
                             text={t("APP.GB.CANCEL")}
                             variant="cancel"

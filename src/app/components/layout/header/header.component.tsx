@@ -43,7 +43,7 @@ const Header: React.FC<React.PropsWithChildren> = ({ children }) => {
             <nav className="header__hierarchy__breadcrumbs">
               <Link to="/" className="breadcrumb-link">Posts</Link>
               <span className="breadcrumb-separator"> | </span>
-              <Link to="/crear" className="breadcrumb-link">{t("APP.CP.TITLE")}</Link>
+              <Link to="/crear" className="breadcrumb-link" data-cy="breadcrumbCreate">{t("APP.CP.TITLE")}</Link>
               <span className="breadcrumb-separator"> | </span>
               <Link to="/graficas" className="breadcrumb-link">{t("APP.GRAPH")}</Link>
             </nav>

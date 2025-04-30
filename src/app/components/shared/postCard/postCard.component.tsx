@@ -27,7 +27,7 @@ const PostCard: React.FC<PostCardProps> = ({
 
     return (
         <div className="post-card" onClick={onView}>
-            <h3>{title}</h3>
+            <h3 data-cy="postTitle">{title}</h3>
             <p>{body}</p>
             
             {showActions && (
