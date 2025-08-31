@@ -1,5 +1,6 @@
 {
     "name": "onBFS",
+    "proxy": "http://localhost:20001",
     "private": true,
     "version": "0.1.0-SNAPSHOT",
     "engines": {
@@ -39,7 +40,7 @@
         "@goaigua/go-gisapi": "2.8.0",
         "@goaigua/goaigua-config": "0.3.1",
         "@goaigua/goaigua-styles": "1.0.0",
-        "@react-keycloak/web": "3.4.0",
+        "@ionic/react": "^8.7.3",
         "@reduxjs/toolkit": "1.9.5",
         "axios": "^1.8.0",
         "dayjs": "1.11.13",
@@ -50,7 +51,7 @@
         "highcharts-react-official": "3.2.1",
         "i18next": "23.2.3",
         "immer": "10.1.1",
-        "keycloak-js": "22.0.3",
+        "ionicons": "^8.0.13",
         "ol": "9.2.4",
         "react": "18.2.0",
         "react-dom": "18.2.0",

@@ -19,6 +19,7 @@ const RegisterForm: React.FC = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const points = 0;  
 
   const { data: users = []} = useGetUsersQuery();
   const [createUser, { isLoading }] = useCreateUserMutation();
@@ -52,7 +53,7 @@ const RegisterForm: React.FC = () => {
     }
 
     try {
-      await createUser({ name, password }).unwrap();
+      await createUser({ name, password, points}).unwrap();
       navigate("/login"); 
     } catch (err) {
       setFormError("Error al registrar el usuario, intente de nuevo.");
@@ -119,7 +120,11 @@ const RegisterForm: React.FC = () => {
           {<p className="error">{formError || usenameError}</p>}
 
           <div className="go-button-container">
-            <GoButton text={t("APP.REGISTER.REG")} variant="submit" />
+            <GoButton 
+              text={t("APP.REGISTER.REG")} 
+              variant="submit"
+              onClick={handleRegister}  // ← Agregar esto
+            />
           </div>
 
           <p className="register-link">

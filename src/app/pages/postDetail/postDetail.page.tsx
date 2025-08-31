@@ -8,6 +8,7 @@ import CommentCard from "../../components/shared/commentCard/commentCard.compone
 import Breadcrumbs from "../../components/shared/breadcrumbs/breadcrumb.component";
 import './postDetail.page.scss';
 import { useTranslation } from 'react-i18next';
+import GoButton from '../../../app/components/shared/button/button.component';
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -21,7 +22,6 @@ const PostDetail = () => {
   const { data: users, isLoading: usersLoading } = useGetUsersQuery();
   const [deleteComment] = useDeleteCommentMutation();
 
-  
   const [newComment, setNewComment] = useState('');
   const [createComment, { isLoading: isCreatingComment }] = useCreateCommentMutation();
 
@@ -29,6 +29,46 @@ const PostDetail = () => {
 
   const { t } = useTranslation();
 
+  // Grupos de categorías equivalentes (español/inglés)
+  const categoryGroups: { [key: string]: string[] } = {
+    'moda': ['moda', 'fashion', 'Moda', 'Fashion'],
+    'tecnologia': ['tecnologia', 'technology', 'Tecnología', 'Technology'],
+    'informatica': ['informatica', 'computing', 'Informática', 'Computing'],
+    'deportes': ['deportes', 'sports', 'Deportes', 'Sports'],
+    'entretenimiento': ['entretenimiento', 'entertainment', 'Entretenimiento', 'Entertainment'],
+    'general': ['general', 'General']
+  };
+
+  // Mapeo de categorías para mostrar
+  const categoryDisplayMap: { [key: string]: string } = {
+    'moda': 'APP.C.FASHION',
+    'tecnologia': 'APP.C.TECNO',
+    'informatica': 'APP.C.INF',
+    'deportes': 'APP.C.SPORTS',
+    'entretenimiento': 'APP.C.ENT',
+    'general': 'APP.C.GEN'
+  };
+
+  // Función para obtener el grupo de una categoría
+  const getCategoryGroup = (category: string | null): string | null => {
+    if (!category) return null;
+    for (const [groupKey, variants] of Object.entries(categoryGroups)) {
+      if (variants.includes(category)) {
+        return groupKey;
+      }
+    }
+    return category.toLowerCase();
+  };
+
+  // Función para traducir categoría
+  const translateCategory = (category: string | null): string => {
+    if (!category) return '';
+    const groupKey = getCategoryGroup(category);
+    if (groupKey && categoryDisplayMap[groupKey]) {
+      return t(categoryDisplayMap[groupKey]);
+    }
+    return category;
+  };
 
   const getUserName = (userId: number) => {
     const user = users?.find((user) => user.id === userId);
@@ -75,9 +115,25 @@ const PostDetail = () => {
       console.error("Error al eliminar todos los comentarios:", error);
     }
   };
-  
 
-  if (postLoading || commentsLoading || usersLoading) return <div>Loading...</div>;
+  // Verificaciones de loading y errores
+  if (postLoading || commentsLoading || usersLoading) {
+    return (
+      <div className="post-detail-container">
+        <Breadcrumbs/>
+        <div>Cargando...</div>
+      </div>
+    );
+  }
+
+  if (!post) {
+    return (
+      <div className="post-detail-container">
+        <Breadcrumbs/>
+        <div>Post no encontrado</div>
+      </div>
+    );
+  }
 
   return (
     <div className="post-detail-container">
@@ -86,8 +142,9 @@ const PostDetail = () => {
       <div className="post-detail">
         <div className="post-detail-left">
           <PostCard 
-            title={post!.title} 
-            body={post!.body} 
+            title={post.title}
+            body={post.body}
+            category={translateCategory(post.category)}
             showActions={false}
           />
         </div>
@@ -105,27 +162,24 @@ const PostDetail = () => {
                 required
                 data-cy="commentInput"
               />
-              <button 
-                type="submit" 
-                className="comment-button"
-                data-cy="publishCommentB"
+              <GoButton
+                text={isCreatingComment ? t('APP.DET.PUBLISH') : t('APP.DET.COMMENT')}
+                variant="submit"
+                onClick={(e) => {
+                    e.preventDefault();
+                    handleSubmitComment(e);
+                }}
                 disabled={isCreatingComment}
-              >
-                {isCreatingComment ? t('APP.DET.PUBLISH') : t('APP.DET.COMMENT')}
-              </button>
+              />
             </form>
-          )}
-          
-          {!currentUserId && (
-            <div className="login-message">
-              Inicia sesión para dejar un comentario
-            </div>
           )}
 
           {isOwner && comments && comments.length > 0 && (
-            <button onClick={handleDeleteAllComments} className="delete-all-button">
-              {t("APP.DET.DELETALL")}
-            </button>
+            <GoButton
+              text={t("APP.DET.DELETALL")}
+              variant="cancel"
+              onClick={handleDeleteAllComments}
+            />
           )}
           
           <div className="comments-list">
@@ -137,12 +191,11 @@ const PostDetail = () => {
                     body={comment.body}
                   />
                   {isOwner && (
-                    <button
-                      className="delete-comment-button"
+                    <GoButton
+                      text={t("APP.DET.DELETE")}
+                      variant="cancel"
                       onClick={() => handleDeleteComment(comment.id!)}
-                    >
-                      {t("APP.DET.DELETE")}
-                    </button>
+                    />
                   )}
                 </div>
               ))
@@ -157,4 +210,5 @@ const PostDetail = () => {
     </div>
   );
 };
+
 export default PostDetail;

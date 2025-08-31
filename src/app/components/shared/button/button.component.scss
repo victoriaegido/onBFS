@@ -6,6 +6,8 @@
     cursor: pointer;
     font-size: 16px;
     transition: background 0.3s ease, transform 0.2s ease;
+    gap: 2px;
+    margin-bottom: 8px;
 
     &--submit {
         background-color: #70dbff;
@@ -24,6 +26,16 @@
 
     &--cancel:hover {
         background-color: #eb5555;
+        transform: scale(1.05);
+    }
+
+    &--view {
+        background-color: #20c997;
+        color: black;
+    }
+
+    &--view:hover {
+        background-color: #1ba085;
         transform: scale(1.05);
     }
 }

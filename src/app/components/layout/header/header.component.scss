@@ -20,7 +20,7 @@
         &__button {
             background: none;
             border: none;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             cursor: pointer;
             color: var(--home-text-colo);
             transition: color 0.3s ease;
@@ -28,6 +28,10 @@
             &:hover {
                 color: var(--postcard-text-color);
             }
+
+            &:focus {
+                 outline: none;
+    }
         }
 
         &__breadcrumbs {
@@ -98,6 +102,10 @@
             &:active {
                 transform: scale(0.95);
             }
+
+            &:focus {
+                   outline: none; // ← También puedes ser más específico
+                    }
         }
 
         
@@ -128,6 +136,14 @@
                 }
             }
         }
+    }
+}
+
+.theme-toggle-button {
+    outline: none;
+    
+    &:focus {
+        outline: none;
     }
 }
 

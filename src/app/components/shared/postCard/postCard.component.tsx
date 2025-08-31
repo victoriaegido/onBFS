@@ -1,13 +1,16 @@
 import React from "react";
 import GoButton from "../button/button.component";
-import { FontAwesomeIconsLibrary } from "@goaigua/goaigua-styles/icons/libraries/font-awesome/fontawesome-icons-library";
-import GoAiguaIcon from "@goaigua/goaigua-styles/icons/icon.component";
 import "./postCard.component.scss";
 import { useTranslation } from "react-i18next";
+import { IonIcon } from "@ionic/react";
+import { eyeOutline } from "ionicons/icons";
+import { createOutline } from "ionicons/icons";
+import { trashOutline } from "ionicons/icons";
 
 interface PostCardProps {
     title: string;
     body: string;
+    category: string;
     onView?: () => void;
     onEdit?: () => void;
     onDelete?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -17,6 +20,7 @@ interface PostCardProps {
 const PostCard: React.FC<PostCardProps> = ({
     title,
     body,
+    category,
     onView,
     onEdit,
     onDelete,
@@ -27,6 +31,7 @@ const PostCard: React.FC<PostCardProps> = ({
 
     return (
         <div className="post-card" onClick={onView}>
+            <div className="category-badge">{category}</div>
             <h3 data-cy="postTitle">{title}</h3>
             <p>{body}</p>
             
@@ -40,7 +45,7 @@ const PostCard: React.FC<PostCardProps> = ({
                                 e.stopPropagation();
                                 onView();
                             }}
-                            iconSrc={<GoAiguaIcon icon={FontAwesomeIconsLibrary.Eye} />}
+                            iconSrc={<IonIcon icon={eyeOutline} />}
                         />
                     )}
                     {onEdit && (
@@ -51,7 +56,7 @@ const PostCard: React.FC<PostCardProps> = ({
                                 e.stopPropagation();
                                 onEdit();
                             }}
-                            iconSrc={<GoAiguaIcon icon={FontAwesomeIconsLibrary.PenToSquare} />}
+                            iconSrc={<IonIcon icon={createOutline}/>}
                         />
                     )}
                     {onDelete && (
@@ -62,7 +67,7 @@ const PostCard: React.FC<PostCardProps> = ({
                                 e.stopPropagation();
                                 onDelete(e);
                             }}
-                            iconSrc={<GoAiguaIcon icon={FontAwesomeIconsLibrary.Trash} />}
+                            iconSrc={<IonIcon icon={trashOutline} />}
                         />
                     )}
                 </div>

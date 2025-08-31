@@ -8,13 +8,13 @@ interface FormProps {
         userId: number;
         title: string;
         body: string;
+        category: string;
     }
     setPost: (key: string, value: string | number) => void;
     onSubmit: (e: React.FormEvent) => void;
     onCancel: () => void;
     formTitle: string;
 }
-
 
 const Form: React.FC<FormProps> = ({
     post,
@@ -24,6 +24,16 @@ const Form: React.FC<FormProps> = ({
     formTitle,
 }) => {
     const { t } = useTranslation();
+    
+    const categories = [
+        t("APP.C.FASHION"),
+        t("APP.C.TECNO"), 
+        t("APP.C.INF"),,
+        t("APP.C.SPORTS"),,
+        t("APP.C.ENT"),,
+        t("APP.C.GEN"),
+    ];
+
     return (
         <div className="post-form">
             <div className="post-form__content">
@@ -47,6 +57,22 @@ const Form: React.FC<FormProps> = ({
                         required
                         data-cy="body"
                     ></textarea>
+
+                    <label className="post-form__label">{t("APP.CATEGORY")}</label>
+                    <select
+                        className="post-form__select"
+                        value={post.category}
+                        onChange={(e) => setPost("category", e.target.value)}
+                        required
+                        data-cy="category"
+                    >
+                        <option value="">{t("APP.C.SELECTION")}</option>
+                        {categories.map((category) => (
+                            <option key={category} value={category}>
+                                {category!.charAt(0).toUpperCase() + category!.slice(1)}
+                            </option>
+                        ))}
+                    </select>
 
                     <div className="post-form__buttons">
                         <GoButton text={t("APP.GB.SAVE")} variant="submit" data-cy="saveButton"/>

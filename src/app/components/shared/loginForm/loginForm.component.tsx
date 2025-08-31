@@ -97,7 +97,11 @@ const LoginForm = () => {
           </div>
 
           <div className="go-button-container">
-            <GoButton text={t("APP.LOGIN.ENTER")} variant="submit" />
+            <GoButton
+             text={t("APP.LOGIN.ENTER")}
+              variant="submit"
+              onClick={handleLogin}
+             />
           </div>
 
           <p className="register-link">

@@ -3,40 +3,96 @@ import { useDeletePostMutation, useGetPostsQuery } from "../../../store/slices/p
 import { useNavigate } from "react-router-dom";
 import SearchBar from "../../shared/searchbar/searchbar.component";
 import PaginationButton from "../../shared/paging-button/pagingb.component";
-import { FontAwesomeIconsLibrary } from "@goaigua/goaigua-styles/icons/libraries/font-awesome/fontawesome-icons-library";
-import GoAiguaIcon from "@goaigua/goaigua-styles/icons/icon.component";
 import PostCard from "../../shared/postCard/postCard.component";
 import "./postlist.component.scss";
 import { useTranslation } from "react-i18next";
+import { IonIcon } from "@ionic/react";
+import { searchOutline } from "ionicons/icons";
+import { caretBackOutline } from "ionicons/icons";
+import { caretForwardOutline } from "ionicons/icons";
 
 interface Post {
     id: number;
     userId: number;
     title: string;
     body: string;
+    category: string | null;
 }
-
 
 const PostList: React.FC = () => {
     const navigate = useNavigate();
     const { data: posts = [], isLoading, error} = useGetPostsQuery();
     const [deletePost] = useDeletePostMutation();
     const [searchTerm, setSearchTerm] = useState("");
+    const [selectedCategory, setSelectedCategory] = useState(""); 
     const [currentPage, setCurrentPage] = useState(1);
     const postsPerPage = 8;
 
     const user= JSON.parse(localStorage.getItem("user") || "{}");
     const currentUserId = user?.id;
 
-
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
     const { t } = useTranslation();
 
-    const filteredPosts = posts.filter((post) =>
-        post.title.toLowerCase().includes(searchTerm.toLowerCase())
+    // Grupos de categorías equivalentes (español/inglés)
+    const categoryGroups: { [key: string]: string[] } = {
+        'moda': ['moda', 'fashion', 'Moda', 'Fashion'],
+        'tecnologia': ['tecnologia', 'technology', 'Tecnología', 'Technology'],
+        'informatica': ['informatica', 'computing', 'Informática', 'Computing'],
+        'deportes': ['deportes', 'sports', 'Deportes', 'Sports'],
+        'entretenimiento': ['entretenimiento', 'entertainment', 'Entretenimiento', 'Entertainment'],
+        'general': ['general', 'General']
+    };
+
+    // Mapeo de categorías para mostrar en el dropdown
+    const categoryDisplayMap: { [key: string]: string } = {
+        'moda': 'APP.C.FASHION',
+        'tecnologia': 'APP.C.TECNO',
+        'informatica': 'APP.C.INF',
+        'deportes': 'APP.C.SPORTS',
+        'entretenimiento': 'APP.C.ENTERTAINMENT',
+        'general': 'APP.C.GENERAL'
+    };
+
+    // Función para obtener el grupo de una categoría
+    const getCategoryGroup = (category: string | null): string | null => {
+        if (!category) return null;
+        for (const [groupKey, variants] of Object.entries(categoryGroups)) {
+            if (variants.includes(category)) {
+                return groupKey;
+            }
+        }
+        return category.toLowerCase();
+    };
+
+    // Función para traducir categoría
+    const translateCategory = (category: string | null): string => {
+        if (!category) return '';
+        const groupKey = getCategoryGroup(category);
+        if (groupKey && categoryDisplayMap[groupKey]) {
+            return t(categoryDisplayMap[groupKey]);
+        }
+        return category;
+    };
+
+    // Obtener grupos únicos para el dropdown (no todas las variantes)
+    const uniqueCategoryGroups = Array.from(
+        new Set(
+            posts
+                .map(post => getCategoryGroup(post.category))
+                .filter(group => group !== null)
+        )
     );
+
+    // Filtrar posts por término de búsqueda Y categoría
+    const filteredPosts = posts.filter((post) => {
+        const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesCategory = selectedCategory === "" || 
+                               getCategoryGroup(post.category) === selectedCategory;
+        return matchesSearch && matchesCategory;
+    });
 
     const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
 
@@ -52,17 +108,60 @@ const PostList: React.FC = () => {
             console.error("Error al eliminar el post:", error);
           }
         }
-      };
+    };
+
+    const handleCategoryChange = (category: string) => {
+        setSelectedCategory(category);
+        setCurrentPage(1);
+    };
+
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(e.target.value);
+        setCurrentPage(1);
+    };
 
     return (
         <div className="post-list-container">
             <h1>{t("APP.HOME.TITLE")}</h1>
+            <p>{t("APP.HOME.SUB")}</p>
 
             <SearchBar
                 searchTerm={searchTerm}
-                onSearchChange={(e) => setSearchTerm(e.target.value)}
-                iconSrc={<GoAiguaIcon icon={FontAwesomeIconsLibrary.MagnifyingGlass}/>}
+                onSearchChange={handleSearchChange}
+                iconSrc={<IonIcon icon={searchOutline}/>}
             />
+
+            <div className="category-filter-container">
+                <select 
+                    value={selectedCategory} 
+                    onChange={(e) => handleCategoryChange(e.target.value)}
+                    className="category-select"
+                >
+                    <option value="">{t("APP.PL.CATEGORY")}</option>
+                    {uniqueCategoryGroups.map((groupKey) => (
+                        <option key={groupKey} value={groupKey}>
+                            {t(categoryDisplayMap[groupKey] || groupKey)}
+                        </option>
+                    ))}
+                </select>
+            </div>
+
+            {(searchTerm || selectedCategory) && (
+                <div className="active-filters">
+                    {searchTerm && <span className="filter-tag">{t("APP.FILTER.B")} "{searchTerm}"</span>}
+                    {selectedCategory && <span className="filter-tag">{t("APP.CATEGORY")}: {t(categoryDisplayMap[selectedCategory] || selectedCategory)}</span>}
+                    <button 
+                        onClick={() => {
+                            setSearchTerm("");
+                            setSelectedCategory("");
+                            setCurrentPage(1);
+                        }}
+                        className="clear-filters"
+                    >
+                        {t("APP.C.CF")}
+                    </button>
+                </div>
+            )}
 
             {isLoading && <p>{t("APP.HOME.LOADING")}</p>}
             {error && <p>{JSON.stringify(error)}</p>}
@@ -74,6 +173,7 @@ const PostList: React.FC = () => {
                             <PostCard
                                 title={post.title}
                                 body={post.body}
+                                category={translateCategory(post.category)}
                                 onView={() => navigate(`/comentario/${post.id}`)}
                                 onEdit={() => navigate(`/editar/${post.id}`)}
                                 {...(post.userId === currentUserId && {
@@ -83,7 +183,7 @@ const PostList: React.FC = () => {
                         </div>
                     ))
                 ) : (
-                    <p>{t("APP.HOME.MSG")}</p>
+                    <p>No se encontraron posts con los filtros aplicados</p>
                 )}
             </div>
 
@@ -92,7 +192,7 @@ const PostList: React.FC = () => {
                     onClick={() => paginate(currentPage - 1)}
                     disabled={currentPage === 1}
                 >
-                    <GoAiguaIcon icon={FontAwesomeIconsLibrary.CaretLeft} />
+                    <IonIcon icon={caretBackOutline} />
                 </PaginationButton>
                 {[...Array(Math.ceil(filteredPosts.length / postsPerPage))].map(
                     (_, index) => (
@@ -112,7 +212,7 @@ const PostList: React.FC = () => {
                         Math.ceil(filteredPosts.length / postsPerPage)
                     }
                 >
-                    <GoAiguaIcon icon={FontAwesomeIconsLibrary.CaretRight} />
+                    <IonIcon icon={caretForwardOutline} />
                 </PaginationButton>
             </div>
         </div>

@@ -7,6 +7,7 @@ interface Post {
     userId: number;
     title: string;
     body: string;
+    category: string;
 }
 
 // Posts initial state

@@ -22,6 +22,7 @@ const GoButton: React.FC<GoButtonProps> = ({
 }) => {
     return (
         <button
+            type="button"
             className={`go-button go-button--${variant} ${className}`}
             onClick={onClick}
             disabled={disabled}

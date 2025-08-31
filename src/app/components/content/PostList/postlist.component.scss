@@ -1,5 +1,15 @@
 .post-list-container {
     text-align: center;
+    color: #3fc6d5;
+
+    h1{
+        color: var(--postcard-text-color);
+        text-shadow: 1px 1px 8px var(--text-shadow-color);
+    }
+
+    p {
+        color: var(--form-label-color);
+    }
 }
 
 .post-list {
@@ -22,4 +32,79 @@
     justify-content: center;
     margin-top: 20px;
     gap: 8px;
+}
+
+// Estilos para el contenedor de filtro de categoría
+.category-filter-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+
+    .category-select {
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--pb-bg-color);
+        border-radius: 8px;
+        background-color: var(--home-buttonbg-color);
+        color: var(--textarea-text-color);
+        font-size: 1rem;
+        min-width: 250px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+            border-color: var(--postcard-text-color);
+        }
+
+        &:focus {
+            outline: none;
+            border-color: var(--postcard-text-color);
+            box-shadow: 0 0 8px rgba(112, 219, 255, 0.6);
+        }
+
+        option {
+            background-color: var(--home-buttonbg-color);
+            color: var(--textarea-text-color);
+        }
+
+        // Estilo cuando no se ha seleccionado nada
+        &:invalid {
+            color: var(--form-label-color);
+            opacity: 0.7;
+        }
+    }
+}
+
+.active-filters {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .filter-tag {
+        background-color: #e3f2fd;
+        color: #1976d2;
+        padding: 0.375rem 0.75rem;
+        border-radius: 16px;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    .clear-filters {
+        background-color: var(--form-bg-color);
+        color: var(--form-label-color);
+        border: 1px solid var(--pb-bg-color);
+        padding: 0.375rem 0.75rem;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: var(--home-buttonbg-color);
+            border-color: var(--postcard-text-color);
+        }
+    }
 }

@@ -17,7 +17,9 @@ const Breadcrumbs: React.FC = () => {
           case 'editar':
             return t('APP.EDIT');
           case 'graficas':
-            return t('APP.GRAPH');
+            return t('APP.B.GRAPH');
+          case 'perfil':
+            return t('APP.B.PROFILE');
           default:
             return path.charAt(0).toUpperCase() + path.slice(1);
         }

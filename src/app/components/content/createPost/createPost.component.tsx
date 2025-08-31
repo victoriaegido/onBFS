@@ -9,6 +9,7 @@ interface Post {
   userId: number;
   title: string;
   body: string;
+  category : string;
 }
 interface CreatePostFormProps {
   onClose: () => void;
@@ -19,6 +20,7 @@ const initialPostState: Post = {
   userId: 0,
   title: "",
   body: "",
+  category: ""
 };
 
 const CreatePostForm: React.FC<CreatePostFormProps> = ({
@@ -42,6 +44,7 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
         userId,
         title: post.title,
         body: post.body,
+        category: post.category
       }).unwrap();
 
       console.log("Post creado:", newPost);

@@ -1,0 +1,210 @@
+.graph-page-container {
+  width: 100%;      
+  min-height: 100vh; 
+  margin: 0;
+  padding: 20px;
+}
+
+
+.view-selector {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+
+  .view-button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    background: var(--form-bg-color);
+    color: var(--home-text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    font-weight: 500;
+
+    &:hover {
+      background: var(--home-buttonbg-color);
+    }
+
+    &.active {
+      background: var(--postcard-text-color);
+      color: white;
+    }
+  }
+}
+
+.graphs-section {
+  width: 100%;
+}
+
+.ranking-section {
+  text-align: center;
+  
+  .ranking-title {
+  color: var(--postcard-text-color);
+  text-shadow: 0px 0px 20px var(--postcard-shadow);
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #4facfe, #00f2fe);
+  -webkit-background-clip: text;
+  background-clip: to-lower-case($string: "");
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+}
+
+@keyframes shine {
+  0% { background-position: 0% }
+  100% { background-position: 200% }
+}
+
+  .ranking-subtitle {
+    color: var(--form-label-color);
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+  }
+}
+
+.ranking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.ranking-item {
+  display: flex;
+  align-items: center;
+  background: var(--form-bg-color);
+  border-radius: 12px;
+  padding: 15px 20px;
+  box-shadow: 0 2px 8px var(--postcard-shadow);
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:nth-child(1) {
+    border: 2px solid #B8860B; // Oro más oscuro para mejor contraste
+    background: linear-gradient(135deg, rgba(184, 134, 11, 0.15), var(--form-bg-color));
+  }
+
+  &:nth-child(2) {
+    border: 2px solid #708090; // Plata más oscura
+    background: linear-gradient(135deg, rgba(112, 128, 144, 0.15), var(--form-bg-color));
+  }
+
+  &:nth-child(3) {
+    border: 2px solid #A0522D; // Bronce más oscuro
+    background: linear-gradient(135deg, rgba(160, 82, 45, 0.15), var(--form-bg-color));
+  }
+}
+
+.rank-icon {
+  margin-right: 15px;
+  min-width: 40px;
+  text-align: center;
+  
+  .gold-icon { color: #FFD700; font-size: 24px; }
+  .silver-icon { color: #C0C0C0; font-size: 24px; }
+  .bronze-icon { color: #CD7F32; font-size: 24px; }
+  
+  .rank-number {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--postcard-text-color);
+  }
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  
+  .user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    margin-right: 15px;
+  }
+  
+  .user-details {
+    text-align: left;
+    
+    .user-name {
+      margin: 0;
+      color: var(--home-text-color);
+      font-size: 16px;
+    }
+    
+    .user-id {
+      margin: 0;
+      color: var(--form-label-color);
+      font-size: 14px;
+    }
+  }
+}
+
+.user-points {
+  text-align: right;
+  
+  .points-number {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--postcard-text-color);
+  }
+  
+  .points-label {
+    font-size: 12px;
+    color: var(--form-label-color);
+  }
+}
+
+.no-data {
+  padding: 40px;
+  color: var(--form-label-color);
+  
+  p {
+    font-size: 16px;
+    margin: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .ranking-item {
+    padding: 12px 15px;
+    
+    .user-info .user-avatar {
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
+    }
+    
+    .user-details {
+      .user-name {
+        font-size: 14px;
+      }
+      
+      .user-id {
+        font-size: 12px;
+      }
+    }
+    
+    .user-points {
+      .points-number {
+        font-size: 18px;
+      }
+    }
+  }
+}

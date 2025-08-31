@@ -73,4 +73,44 @@
         gap: 16px;
         margin-top: 20px;
     }
+
+    &__select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--pb-bg-color);
+    background-color: var(--home-buttonbg-color);
+    color: var(--textarea-text-color);
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-color: var(--postcard-text-color);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--postcard-text-color);
+      box-shadow: 0 0 8px rgba(112, 219, 255, 0.6);
+    }
+
+    option {
+      background-color: var(--home-buttonbg-color);
+      color: var(--textarea-text-color);
+    }
+
+    // Estilo cuando no se ha seleccionado nada
+    &:invalid {
+      color: var(--form-label-color);
+      opacity: 0.7;
+    }
+
+    option:first-child {
+      color: var(--form-label-color);
+      font-style: italic;
+      opacity: 0.7;
+    }
+  }
 }

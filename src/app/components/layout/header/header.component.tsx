@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FontAwesomeIconsLibrary } from "@goaigua/goaigua-styles/icons/libraries/font-awesome/fontawesome-icons-library";
-import GoAiguaIcon from "@goaigua/goaigua-styles/icons/icon.component";
 import "./header.component.scss";
 import LanguageSwitcher from "../../shared/languageSwitcher/languageSwitcher.component";
 import { useTranslation } from "react-i18next";
 import { CgDarkMode } from "react-icons/cg";
+import { IonIcon } from "@ionic/react";
+import { settingsOutline } from "ionicons/icons";
+import { personCircleOutline } from "ionicons/icons";
+import UserProfile from "../../../pages/userProfile/userProfile.page";
 
 const Header: React.FC<React.PropsWithChildren> = ({ children }) => {
 
@@ -37,11 +39,15 @@ const Header: React.FC<React.PropsWithChildren> = ({ children }) => {
     return (
         <header className="header">
           <div className="header__hierarchy">
-            <button className="header__hierarchy__button">
+           {/* <button className="header__hierarchy__button">
               <GoAiguaIcon icon={FontAwesomeIconsLibrary.Bars} />
-            </button>
+            </button>*/}
             <nav className="header__hierarchy__breadcrumbs">
-              <Link to="/" className="breadcrumb-link">Posts</Link>
+              <button className="header__hierarchy__button" onClick={() => {navigate('/perfil');}}>
+                <IonIcon icon={personCircleOutline} />
+                <Link to="/perfil"/>
+              </button>
+              <Link to="/" className="breadcrumb-link">{t("APP.P.TITLE")}</Link>
               <span className="breadcrumb-separator"> | </span>
               <Link to="/crear" className="breadcrumb-link" data-cy="breadcrumbCreate">{t("APP.CP.TITLE")}</Link>
               <span className="breadcrumb-separator"> | </span>
@@ -52,7 +58,7 @@ const Header: React.FC<React.PropsWithChildren> = ({ children }) => {
           <div className="header__menu">
             <div className="header__menu__icon-buttons">
               <button className="icon-button" onClick={() => setMenuOpen(!menuOpen)}>
-                <GoAiguaIcon icon={FontAwesomeIconsLibrary.Gear} />
+                <IonIcon icon={settingsOutline} />
               </button>
 
               <LanguageSwitcher/>

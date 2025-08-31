@@ -6,6 +6,7 @@ import ProtectedRoute from "./protectedRoute/protectedRoute";
 import RegisterForm from "../components/shared/registerForm/registerForm.component";
 import PostDetail from "../pages/postDetail/postDetail.page";
 import GraphPage from "../pages/graph/graph.page";
+import UserProfile from "../pages/userProfile/userProfile.page";
 
 const HomePage = lazy(() => import("../../app/pages/postHome.page"));
 const EditPostPage = lazy(
@@ -26,7 +27,7 @@ export const AppRoutes = () => {
                 <Route path="/editar/:id" element={<ProtectedRoute> <EditPostPage /> </ProtectedRoute> } />
                 <Route path="/comentario/:id" element={<ProtectedRoute> <PostDetail/></ProtectedRoute>}/>
                 <Route path="/graficas" element={<ProtectedRoute> <GraphPage/></ProtectedRoute>}/>
-
+                <Route path="/perfil" element={<ProtectedRoute> <UserProfile/> </ProtectedRoute>}/>
             </Routes>
         </Suspense>
     );
