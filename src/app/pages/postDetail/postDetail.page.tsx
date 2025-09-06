@@ -162,15 +162,18 @@ const PostDetail = () => {
                 required
                 data-cy="commentInput"
               />
-              <GoButton
+              <div className="buttoncreatecomment">
+                <GoButton
                 text={isCreatingComment ? t('APP.DET.PUBLISH') : t('APP.DET.COMMENT')}
                 variant="submit"
                 onClick={(e) => {
                     e.preventDefault();
                     handleSubmitComment(e);
                 }}
+                data-cy="publishCommentB"
                 disabled={isCreatingComment}
               />
+              </div>
             </form>
           )}
 

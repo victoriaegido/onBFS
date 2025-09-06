@@ -36,25 +36,24 @@ const PostList: React.FC = () => {
 
     const { t } = useTranslation();
 
-    // Grupos de categorías equivalentes (español/inglés)
-    const categoryGroups: { [key: string]: string[] } = {
-        'moda': ['moda', 'fashion', 'Moda', 'Fashion'],
-        'tecnologia': ['tecnologia', 'technology', 'Tecnología', 'Technology'],
-        'informatica': ['informatica', 'computing', 'Informática', 'Computing'],
-        'deportes': ['deportes', 'sports', 'Deportes', 'Sports'],
-        'entretenimiento': ['entretenimiento', 'entertainment', 'Entretenimiento', 'Entertainment'],
-        'general': ['general', 'General']
-    };
+    // Verifica que estos mapeos estén completos y consistentes
+const categoryGroups: { [key: string]: string[] } = {
+    'moda': ['moda', 'fashion', 'Moda', 'Fashion'],
+    'tecnologia': ['tecnologia', 'technology', 'Tecnología', 'Technology'],
+    'informatica': ['informatica', 'computing', 'Informática', 'Computing'],
+    'deportes': ['deportes', 'sports', 'Deportes', 'Sports'],
+    'entretenimiento': ['entretenimiento', 'entertainment', 'Entretenimiento', 'Entertainment'],
+    'general': ['general', 'General']
+};
 
-    // Mapeo de categorías para mostrar en el dropdown
-    const categoryDisplayMap: { [key: string]: string } = {
-        'moda': 'APP.C.FASHION',
-        'tecnologia': 'APP.C.TECNO',
-        'informatica': 'APP.C.INF',
-        'deportes': 'APP.C.SPORTS',
-        'entretenimiento': 'APP.C.ENTERTAINMENT',
-        'general': 'APP.C.GENERAL'
-    };
+const categoryDisplayMap: { [key: string]: string } = {
+    'moda': 'APP.C.FASHION',
+    'tecnologia': 'APP.C.TECNO',
+    'informatica': 'APP.C.INF',
+    'deportes': 'APP.C.SPORTS',
+    'entretenimiento': 'APP.C.ENT',        
+    'general': 'APP.C.GEN'                 
+};
 
     // Función para obtener el grupo de una categoría
     const getCategoryGroup = (category: string | null): string | null => {

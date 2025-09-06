@@ -75,7 +75,7 @@ const Form: React.FC<FormProps> = ({
                     </select>
 
                     <div className="post-form__buttons">
-                        <GoButton text={t("APP.GB.SAVE")} variant="submit" data-cy="saveButton"/>
+                        <GoButton text={t("APP.GB.SAVE")} variant="submit" onClick={onSubmit} data-cy="saveButton"/>
                         <GoButton
                             text={t("APP.GB.CANCEL")}
                             variant="cancel"

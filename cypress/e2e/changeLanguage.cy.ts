@@ -11,7 +11,7 @@ describe('create post', () => {
   it('Search post', () => {
     const breadcrumb = () => cy.get('[data-cy="breadcrumbCreate"]');
 
-    breadcrumb().should('have.text', 'Crear Post');
+    breadcrumb().should('have.text', 'Crear publicación');
 
     cy.get('[data-cy="switcher"]').click();
     breadcrumb().should('have.text', 'Create post');

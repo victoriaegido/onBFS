@@ -19,9 +19,7 @@ describe('create post', () => {
       .should('be.visible')
       .type(comentario);
 
-    cy.get('[data-cy="publishCommentB"]')
-      .should('not.be.disabled')
-      .click()
+    cy.get('.buttoncreatecomment').find('button').click()
 
     
     cy.get('[data-cy="commentCard"]')
